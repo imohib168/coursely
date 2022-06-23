@@ -11,9 +11,15 @@ app.use(cors());
 
 dotenv.config();
 
-// Routes
+//  -- Routes --
+
+// 1. Users
 const userRoute = require('./routes/user.js');
-app.use('/api/users', userRoute);
+app.use('/api/user', userRoute);
+
+// 2. Blogs
+const blogsRoute = require('./routes/blog.js');
+app.use('/api/blog', blogsRoute);
 
 // Database connection
 const db = require('./models');
