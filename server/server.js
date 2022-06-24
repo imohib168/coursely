@@ -21,6 +21,10 @@ app.use('/api/user', userRoute);
 const blogsRoute = require('./routes/blog.js');
 app.use('/api/blog', blogsRoute);
 
+// 3. Comments
+const commentRoute = require('./routes/comment.js');
+app.use('/api/comment', commentRoute);
+
 // Database connection
 const db = require('./models');
 const PORT = process.env.PORT || 5000;
