@@ -32,9 +32,9 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const register = asyncHandler(async (req, res) => {
-  const { email, username, password, usertype } = req.body;
+  const { email, username, password, role } = req.body;
 
-  if (!email || !username || !password || !usertype) {
+  if (!email || !username || !password || !role) {
     res.status(400);
     throw new Error('Please provide all fields');
   }
@@ -42,14 +42,14 @@ const register = asyncHandler(async (req, res) => {
   const userExist = await Users.findOne({ where: { email: email } });
   const uniqueUsername = await Users.findOne({ where: { username: username } });
 
-  if (uniqueUsername) {
-    res.status(400);
-    throw new Error('Username should be unique');
-  }
-
   if (userExist) {
     res.status(400);
     throw new Error('User Already Exists');
+  }
+
+  if (uniqueUsername) {
+    res.status(400);
+    throw new Error('Username should be unique');
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -59,7 +59,8 @@ const register = asyncHandler(async (req, res) => {
     email,
     username,
     password: hashedPassword,
-    usertype,
+    role,
+    roleId: role === 'INSTRUCTOR' ? '1' : '2',
   });
 
   if (newUser) {
