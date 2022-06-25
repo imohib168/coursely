@@ -25,6 +25,10 @@ app.use('/api/blog', blogsRoute);
 const commentRoute = require('./routes/comment.js');
 app.use('/api/comment', commentRoute);
 
+// 4. Like Blog
+const LikeRoute = require('./routes/like.js');
+app.use('/api/like', LikeRoute);
+
 // Database connection
 const db = require('./models');
 const PORT = process.env.PORT || 5000;

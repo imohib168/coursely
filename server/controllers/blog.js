@@ -1,21 +1,22 @@
 const asyncHandler = require('express-async-handler');
-const { Blogs } = require('../models');
+const { Blogs, Likes } = require('../models');
 
 const getAllBlogs = asyncHandler(async (req, res) => {
-  const getBlogs = await Blogs.findAll();
+  const getBlogs = await Blogs.findAll({ include: [Likes] });
 
   res.status(200).json(getBlogs);
 });
 
 const createBlog = asyncHandler(async (req, res) => {
   const { title, text, username } = req.body;
+  const userId = req.user.id;
 
   if (!title || !text || !username) {
     res.status(400);
     throw new Error('Please provide all fields');
   }
 
-  const newBlog = await Blogs.create({ title, text, username });
+  const newBlog = await Blogs.create({ title, text, username, UserId: userId });
 
   const postBlog = {
     blog: newBlog,
