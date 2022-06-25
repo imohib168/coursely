@@ -40,6 +40,12 @@ const register = asyncHandler(async (req, res) => {
   }
 
   const userExist = await Users.findOne({ where: { email: email } });
+  const uniqueUsername = await Users.findOne({ where: { username: username } });
+
+  if (uniqueUsername) {
+    res.status(400);
+    throw new Error('Username should be unique');
+  }
 
   if (userExist) {
     res.status(400);
