@@ -14,11 +14,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    usertype: {
+    role: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    roleId: {
+      type: DataTypes.INTEGER,
+    },
   });
+
+  Users.associate = (models) => {
+    Users.hasMany(models.Blogs, {
+      onDelete: 'cascade',
+    });
+  };
 
   return Users;
 };
