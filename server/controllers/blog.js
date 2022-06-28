@@ -1,8 +1,27 @@
+const { Op } = require('sequelize');
 const asyncHandler = require('express-async-handler');
 const { Blogs, Likes } = require('../models');
 
 const getAllBlogs = asyncHandler(async (req, res) => {
-  const getBlogs = await Blogs.findAll({ include: [Likes] });
+  const byId = req?.query?.id;
+  const byDate = req?.query?.date;
+  const search = req?.query?.search;
+
+  const sortByDate = byDate === 'newest' ? 'DESC' : 'ASC';
+  const sortById = byId === 'desc' ? 'DESC' : 'ASC';
+
+  const getBlogs = await Blogs.findAll({
+    include: [Likes],
+    order: [
+      ['id', sortById],
+      ['createdAt', sortByDate],
+    ],
+    where: {
+      title: {
+        [Op.like]: `%${search}%`,
+      },
+    },
+  });
 
   res.status(200).json(getBlogs);
 });
