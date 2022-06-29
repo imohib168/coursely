@@ -18,9 +18,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    roleId: {
-      type: DataTypes.INTEGER,
-    },
+    roleId: { type: DataTypes.INTEGER },
+    firstName: { type: DataTypes.STRING },
+    lastName: { type: DataTypes.STRING },
+    phoneNumber: { type: DataTypes.STRING },
+    githubURL: { type: DataTypes.STRING },
+    linkedinURL: { type: DataTypes.STRING },
+    facebookURL: { type: DataTypes.STRING },
+    bio: { type: DataTypes.STRING },
   });
 
   Users.associate = (models) => {

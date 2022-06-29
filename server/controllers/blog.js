@@ -48,7 +48,7 @@ const createBlog = asyncHandler(async (req, res) => {
 const getBlogById = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
-  const blog = await Blogs.findOne({ where: { id: id } });
+  const blog = await Blogs.findOne({ where: { id: id }, include: [Likes] });
 
   if (blog) {
     res.status(200).json(blog);
