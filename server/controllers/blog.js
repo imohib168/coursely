@@ -1,41 +1,55 @@
-const { Op } = require('sequelize');
+const db = require('../models');
+const { Op, QueryTypes } = require('sequelize');
 const asyncHandler = require('express-async-handler');
 const { Blogs, Likes } = require('../models');
 
 const getAllBlogs = asyncHandler(async (req, res) => {
-  const byId = req?.query?.id;
-  const byDate = req?.query?.date;
-  const search = req?.query?.search;
+  const { id: byId, search: bySearch, category: byCategory } = req?.query;
 
-  const sortByDate = byDate === 'newest' ? 'DESC' : 'ASC';
-  const sortById = byId === 'desc' ? 'DESC' : 'ASC';
+  const filters = {};
+
+  if (bySearch) filters.title = { [Op.like]: `%${bySearch}%` };
+  if (byCategory) filters.category = byCategory;
 
   const getBlogs = await Blogs.findAll({
     include: [Likes],
-    order: [
-      ['id', sortById],
-      ['createdAt', sortByDate],
-    ],
-    where: {
-      title: {
-        [Op.like]: `%${search}%`,
-      },
-    },
+    order: [['id', byId]],
+    where: filters,
   });
 
   res.status(200).json(getBlogs);
 });
 
+const getblogCategories = asyncHandler(async (req, res) => {
+  const getCategories = await db.sequelize.query(
+    'SELECT DISTINCT category FROM blogs',
+    { model: Blogs, type: QueryTypes.SELECT }
+  );
+
+  if (getCategories) {
+    res.status(200).json(getCategories);
+  } else {
+    res.status(400);
+    throw new Error('Something went wrong');
+  }
+});
+
 const createBlog = asyncHandler(async (req, res) => {
-  const { title, text, username } = req.body;
+  const { title, text, username, category } = req.body;
   const userId = req.user.id;
 
-  if (!title || !text || !username) {
+  if (!title || !text || !username || !category) {
     res.status(400);
     throw new Error('Please provide all fields');
   }
 
-  const newBlog = await Blogs.create({ title, text, username, UserId: userId });
+  const newBlog = await Blogs.create({
+    title,
+    text,
+    username,
+    UserId: userId,
+    category,
+  });
 
   const postBlog = {
     blog: newBlog,
@@ -76,4 +90,5 @@ module.exports = {
   createBlog,
   getBlogById,
   deleteBlog,
+  getblogCategories,
 };
