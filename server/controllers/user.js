@@ -75,6 +75,47 @@ const profile = asyncHandler(async (req, res) =>
   res.status(200).json(req.user)
 );
 
+const updateProfile = asyncHandler(async (req, res) => {
+  const {
+    id,
+    firstName,
+    lastName,
+    phoneNumber,
+    githubURL,
+    linkedinURL,
+    facebookURL,
+    bio,
+  } = req.body;
+
+  const updatedProfile = await Users.update(
+    {
+      firstName,
+      lastName,
+      phoneNumber,
+      githubURL,
+      linkedinURL,
+      facebookURL,
+      bio,
+    },
+    { where: { id: id } }
+  );
+
+  if (updatedProfile) {
+    res.status(200).json({
+      firstName,
+      lastName,
+      phoneNumber,
+      githubURL,
+      linkedinURL,
+      facebookURL,
+      bio,
+    });
+  } else {
+    res.status(400);
+    throw new Error('Something went wrong');
+  }
+});
+
 const generateJWTToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: '30d',
@@ -84,4 +125,5 @@ module.exports = {
   login,
   register,
   profile,
+  updateProfile,
 };
