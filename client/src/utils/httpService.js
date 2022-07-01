@@ -1,12 +1,10 @@
 import axios from 'axios';
-// import { interceptor } from './intercepter';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 60000,
 });
 
-// const interceptor = (instance) => {
 instance.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem('token');
@@ -29,7 +27,6 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-// };
 
 const request = async ({ method, url, data, headers }) => {
   if (method === 'delete') {
