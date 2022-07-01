@@ -1,12 +1,16 @@
-import { Box } from '@mui/material';
 import React from 'react';
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import { appTheme } from '../theme';
 import { ErrorLayoutWrapper } from './ui';
 
 const HomeLayout = () => {
   return (
-    <ErrorLayoutWrapper>
-      <Box>Error</Box>
-    </ErrorLayoutWrapper>
+    <ThemeProvider theme={appTheme}>
+      <CssBaseline enableColorScheme />
+      <ErrorLayoutWrapper>
+        <Box>Error</Box>
+      </ErrorLayoutWrapper>
+    </ThemeProvider>
   );
 };
 
