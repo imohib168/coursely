@@ -7,7 +7,7 @@ import InstructorRoute from './instructorAuthRoute';
 import StudentRoute from './studentAuthRoute';
 
 // Pages
-import { HomePage } from '../pages';
+import { ErrorPage, HomePage } from '../pages';
 
 const AppRoutes = () => {
   return (
@@ -36,7 +36,9 @@ const AppRoutes = () => {
       </Route>
 
       {/* 404 Routes */}
-      <Route path='*' element={<ErrorLayout />} />
+      <Route element={<ErrorLayout />}>
+        <Route path='*' element={<ErrorPage />} />
+      </Route>
     </Routes>
   );
 };

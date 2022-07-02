@@ -1,14 +1,17 @@
 import React from 'react';
-import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { appTheme } from '../theme';
-import { ErrorLayoutWrapper } from './ui';
+// import { ErrorPage } from '../pages';
+import { ErrorLayoutWrapper, StyledBigHeading } from './ui';
+import { Outlet } from 'react-router-dom';
 
 const HomeLayout = () => {
   return (
     <ThemeProvider theme={appTheme}>
       <CssBaseline enableColorScheme />
       <ErrorLayoutWrapper>
-        <Box>Error</Box>
+        <Outlet />
+        <StyledBigHeading>ERROR</StyledBigHeading>
       </ErrorLayoutWrapper>
     </ThemeProvider>
   );
