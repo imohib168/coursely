@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 
 export const StyledErrorImgGrid = styled(Grid)({
   zIndex: '1',

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import { BasicLayout, ErrorLayout, HomeLayout } from '../layouts';
+import { BasicLayout, ErrorLayout, HomeLayout, AuthLayout } from '../layouts';
 
 // Routes
 import InstructorRoute from './instructorAuthRoute';
 import StudentRoute from './studentAuthRoute';
 
 // Pages
-import { ErrorPage, HomePage } from '../pages';
+import { ErrorPage, HomePage, LoginPage, RegisterPage } from '../pages';
 
 const AppRoutes = () => {
   return (
@@ -15,6 +15,11 @@ const AppRoutes = () => {
       {/* Public Routes */}
       <Route element={<HomeLayout />}>
         <Route path='/' element={<HomePage />} />
+      </Route>
+
+      <Route element={<AuthLayout />}>
+        <Route path='login' element={<LoginPage />} />
+        <Route path='register' element={<RegisterPage />} />
       </Route>
 
       {/* Instructor Routes */}
