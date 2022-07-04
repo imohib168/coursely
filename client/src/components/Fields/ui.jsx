@@ -34,3 +34,23 @@ export const StyledFormControl = styled(FormControl)(() => ({
     },
   },
 }));
+
+export const StyledSimpleField = styled('input', {
+  shouldForwardProp: (prop) => prop !== 'color',
+})(({ theme, color }) => ({
+  flex: 1,
+  outline: 'none',
+  border: `2px solid ${!color ? 'transparent' : color}`,
+  background: 'transparent',
+  fontSize: '16px',
+  color: !color ? theme.palette.primary.main : color,
+
+  '&:focus': {
+    outline: 'none',
+    border: `2px solid ${!color ? 'transparent' : color}`,
+  },
+
+  '::placeholder': {
+    color: !color ? theme.palette.primary.main : color,
+  },
+}));

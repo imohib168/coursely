@@ -10,7 +10,7 @@ import { StyledErrorImgGrid, StyledErrorDetailGrid, buttonStyles } from './ui';
 const Error = () => {
   const navigate = useNavigate();
 
-  const gotoHome = () => navigate('/', { replace: true });
+  const gotoHome = () => navigate('/');
 
   return (
     <Grid container justifyContent='space-around' alignItems='center'>
