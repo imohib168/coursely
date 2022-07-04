@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ASSET from '../../../utils/assets';
 import {
   StyledImage,
@@ -35,7 +35,12 @@ const Login = () => {
               />
             </Box>
 
-            <StyledAuthHeading>Welcome Back!</StyledAuthHeading>
+            <StyledAuthHeading>
+              Welcome Back to{' '}
+              <Link style={{ textDecoration: 'none' }} to='/'>
+                Coursely
+              </Link>
+            </StyledAuthHeading>
 
             <StyledAuthSlogan>Login to your account</StyledAuthSlogan>
 

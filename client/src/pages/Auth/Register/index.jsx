@@ -11,7 +11,7 @@ import {
   StyledButtonContainer,
 } from './ui';
 import { UIButton, UIPasswordField, UITextField } from '../../../components';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ASSET from '../../../utils/assets';
 
 const Register = () => {
@@ -22,7 +22,12 @@ const Register = () => {
       <Grid container>
         <StyledFormGrid item xs={12} md={6}>
           <StyledBox>
-            <StyledAuthHeading>Welcome to Coursely</StyledAuthHeading>
+            <StyledAuthHeading>
+              Welcome to{' '}
+              <Link style={{ textDecoration: 'none' }} to='/'>
+                Coursely
+              </Link>
+            </StyledAuthHeading>
 
             <StyledAuthSlogan>
               Signup here to get Started and explore the world of learning
