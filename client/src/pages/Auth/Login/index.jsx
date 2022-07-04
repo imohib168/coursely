@@ -71,7 +71,7 @@ const Login = () => {
                 variant='outlined'
                 textColor='#424242'
                 hoverTextColor='#424242'
-                onClick={() => navigate('/register', { replace: true })}
+                onClick={() => navigate('/register')}
                 sx={{ borderRadius: '8px', width: '100px' }}
               >
                 Register
