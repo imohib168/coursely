@@ -5,9 +5,16 @@ import { BasicLayout, ErrorLayout, HomeLayout, AuthLayout } from '../layouts';
 // Routes
 import InstructorRoute from './instructorAuthRoute';
 import StudentRoute from './studentAuthRoute';
+import GeneralRoute from './generalRoute';
 
 // Pages
-import { ErrorPage, HomePage, LoginPage, RegisterPage } from '../pages';
+import {
+  ErrorPage,
+  HomePage,
+  LoginPage,
+  RegisterPage,
+  BlogsPage,
+} from '../pages';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +27,12 @@ const AppRoutes = () => {
       <Route element={<AuthLayout />}>
         <Route path='login' element={<LoginPage />} />
         <Route path='register' element={<RegisterPage />} />
+      </Route>
+
+      <Route element={<BasicLayout />}>
+        <Route element={<GeneralRoute />}>
+          <Route path='blogs' element={<BlogsPage />} />
+        </Route>
       </Route>
 
       {/* Instructor Routes */}

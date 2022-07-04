@@ -1,40 +1,54 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, Grid } from '@mui/material';
-import {
-  StyledNavbar,
-  StyledNavbarLogo,
-  StyledIconBox,
-  StyledSearchBox,
-} from './ui';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Box, Container, Grid } from '@mui/material';
+import { StyledNavbar, StyledNavbarLogo } from './ui';
+import { StyledSearchBox, StyledIconBox } from '../../styles';
 import { UIButton, UISimpleField } from '../../components';
 import { Search } from '@mui/icons-material';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isBlogPage = pathname.includes('blogs');
 
   return (
     <StyledNavbar component='nav'>
       <Container>
         <Grid container justifyContent='space-between' alignItems='center'>
           {/* Logo */}
-          <Grid item xs={2}>
-            <StyledNavbarLogo>Coursely</StyledNavbarLogo>
+          <Grid
+            item
+            xs={2}
+            sx={{
+              display: isBlogPage && 'flex',
+              alignItems: isBlogPage && 'center',
+            }}
+          >
+            <StyledNavbarLogo>
+              <Link to='/'>Coursely</Link>
+            </StyledNavbarLogo>
+            {isBlogPage && (
+              <Box component='span' sx={{ ml: 1, fontSize: '14px' }}>
+                Blogs
+              </Box>
+            )}
           </Grid>
 
           {/* Search */}
-          <Grid item xs={8}>
-            <StyledSearchBox>
-              <UISimpleField
-                type='text'
-                placeholder='Search...'
-                sx={{ padding: '8px 12px' }}
-              />
-              <StyledIconBox>
-                <Search />
-              </StyledIconBox>
-            </StyledSearchBox>
-          </Grid>
+          {!isBlogPage ? (
+            <Grid item xs={8}>
+              <StyledSearchBox>
+                <UISimpleField
+                  type='text'
+                  placeholder='Search...'
+                  sx={{ padding: '8px 12px' }}
+                />
+                <StyledIconBox>
+                  <Search />
+                </StyledIconBox>
+              </StyledSearchBox>
+            </Grid>
+          ) : null}
 
           {/* Login & Register BUtton */}
           <Grid item xs={2}>

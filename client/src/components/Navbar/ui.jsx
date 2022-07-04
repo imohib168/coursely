@@ -9,9 +9,13 @@ export const StyledNavbar = styled(Box)(({ theme }) => ({
 export const StyledNavbarLogo = styled(Typography)(({ theme }) => ({
   fontSize: '28px',
   fontWeight: 600,
-  color: theme.palette.primary.main,
   padding: 0,
   margin: 0,
+
+  a: {
+    color: theme.palette.primary.main,
+    textDecoration: 'none',
+  },
 }));
 
 export const StyledIconBox = styled(Box)(({ theme }) => ({

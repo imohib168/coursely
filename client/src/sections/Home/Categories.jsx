@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Container } from '@mui/material';
-import { StyledMainBox } from './ui';
 import { UICategoryCard } from '../../components';
+import { StyledMainBox } from '../../styles';
 
 const Categories = () => {
   return (
