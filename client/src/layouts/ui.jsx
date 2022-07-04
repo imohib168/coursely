@@ -1,11 +1,24 @@
 import { styled } from '@mui/system';
 import { Box, Typography } from '@mui/material';
 
+// Home Layout
 export const HomeLayoutWrapper = styled(Box)({});
+
+// Basic Layout
 export const BasicLayoutWrapper = styled(Box)({});
+
+// Auth Layout
+export const AuthLayoutWrapper = styled(Box)({
+  maxWidth: '1800px',
+  margin: '0 auto',
+  height: '100vh',
+  overflow: 'hidden',
+});
 
 // Error Layout
 export const ErrorLayoutWrapper = styled(Box)({
+  maxWidth: '1800px',
+  margin: '0 auto',
   position: 'relative',
   overflow: 'hidden',
   height: '100vh',
