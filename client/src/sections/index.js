@@ -6,4 +6,8 @@ export { default as InstructorSection } from './Home/Instructor';
 export { default as EducationSection } from './Home/Education';
 
 // Blogs
-export { default as SearchBarSection } from './Blogs/SearchBar';
+export { default as BlogFilterSection } from './Blogs/BlogFilter';
+export { default as BlogPostSection } from './Blogs/BlogPost';
+export { default as BlogSection } from './Blogs/Blog';
+export { default as RelatedBlogsSection } from './Blogs/RelatedBlogs';
+export { default as CommentsSection } from './Blogs/Comments';

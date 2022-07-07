@@ -7,6 +7,7 @@ import StudentSVG from '../assets/svg/student.svg';
 import BlogSVG from '../assets/svg/blog.svg';
 
 import Logo from '../assets/images/coursely.png';
+import Avatar from '../assets/images/avatar.png';
 
 const ASSETS = {
   error: {
@@ -40,6 +41,10 @@ const ASSETS = {
   blog: {
     img: BlogSVG,
     alt: 'blog-svg',
+  },
+  avatar: {
+    img: Avatar,
+    alt: 'user-avatar',
   },
 };
 

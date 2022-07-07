@@ -6,7 +6,7 @@ import { StyledMainBox } from '../../styles';
 const Categories = () => {
   return (
     <StyledMainBox background='#424242'>
-      <Container sx={{ padding: '30px 0px 20px 0px' }}>
+      <Container maxWidth='lg' sx={{ padding: '30px 0px 20px 0px' }}>
         <Grid container justifyContent='space-between'>
           <UICategoryCard src='anihkfxp' category='Programming & Development' />
           <UICategoryCard src='vixtkkbk' category='Photography' />

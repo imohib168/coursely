@@ -8,11 +8,13 @@ export const StyledMainBox = styled(Box, {
   padding: '30px 0px',
 }));
 
-export const StyledSearchBox = styled(Box)(({ theme }) => ({
+export const StyledSearchBox = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'width',
+})(({ theme, width }) => ({
   display: 'flex',
   alignItems: 'center',
   border: `2px solid ${theme.palette.primary.main}`,
-  width: '90%',
+  width: width ? width : '90%',
 }));
 
 export const StyledIconBox = styled(Box)(({ theme }) => ({

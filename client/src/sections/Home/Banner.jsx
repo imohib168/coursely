@@ -10,7 +10,7 @@ const Banner = () => {
   const naviagte = useNavigate();
 
   return (
-    <Container>
+    <Container maxWidth='lg'>
       <StyledMainBox>
         <Grid container justifyContent='space-between' alignItems='center'>
           <Grid item xs={12} md={5.5}>

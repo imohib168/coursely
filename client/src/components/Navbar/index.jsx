@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <StyledNavbar component='nav'>
-      <Container>
+      <Container maxWidth='lg'>
         <Grid container justifyContent='space-between' alignItems='center'>
           {/* Logo */}
           <Grid

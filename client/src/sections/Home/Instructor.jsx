@@ -10,7 +10,7 @@ const Instructor = () => {
   const naviagte = useNavigate();
   return (
     <StyledMainBox background='#202020'>
-      <Container sx={{ padding: '30px 0px' }}>
+      <Container maxWidth='lg' sx={{ padding: '30px 0px' }}>
         <Grid container justifyContent='space-between' alignItems='center'>
           <Grid item xs={12} md={5.5}>
             <StyledHeading sx={{ color: '#eeeeee' }}>

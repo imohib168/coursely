@@ -14,6 +14,7 @@ import {
   LoginPage,
   RegisterPage,
   BlogsPage,
+  BlogDetail,
 } from '../pages';
 
 const AppRoutes = () => {
@@ -32,6 +33,7 @@ const AppRoutes = () => {
       <Route element={<BasicLayout />}>
         <Route element={<GeneralRoute />}>
           <Route path='blogs' element={<BlogsPage />} />
+          <Route path='blogs/:id' element={<BlogDetail />} />
         </Route>
       </Route>
 

@@ -1,11 +1,24 @@
-import { Box } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import React from 'react';
-import { SearchBarSection } from '../../sections';
+import { BlogPostSection, BlogFilterSection } from '../../sections';
+import { StyledRightGrid } from './ui';
 
 const Blogs = () => {
   return (
-    <Box>
-      <SearchBarSection />
+    <Box sx={{ minHeight: '60vh' }}>
+      {/* <SearchBarSection /> */}
+
+      <Container maxWidth='lg'>
+        <Grid container display='flex' justifyContent='space-between'>
+          <Grid item xs={12} md={7.9}>
+            <BlogPostSection />
+          </Grid>
+
+          <StyledRightGrid item xs={12} md={3.9}>
+            <BlogFilterSection />
+          </StyledRightGrid>
+        </Grid>
+      </Container>
     </Box>
   );
 };
