@@ -53,7 +53,9 @@ const UIBlogCard = ({ title, username, time, blogText, isDetailPage }) => {
         </Grid>
 
         <Grid item sx={{ marginBottom: 2 }}>
-          <StyledBlogTitle to='/blogs/1'>{title}</StyledBlogTitle>
+          <Typography sx={{ marginBottom: 2 }}>
+            <StyledBlogTitle to='/blogs/1'>{title}</StyledBlogTitle>
+          </Typography>
           <Typography>{getBlogText(blogText)}</Typography>
         </Grid>
         <StyledBottomGrid item>

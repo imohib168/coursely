@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Box, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { StyledNavbar, StyledNavbarLogo } from './ui';
 import { StyledSearchBox, StyledIconBox } from '../../styles';
 import { UIButton, UISimpleField } from '../../components';
@@ -28,9 +28,18 @@ const Navbar = () => {
               <Link to='/'>Coursely</Link>
             </StyledNavbarLogo>
             {isBlogPage && (
-              <Box component='span' sx={{ ml: 1, fontSize: '14px' }}>
+              <Link
+                to='/blogs'
+                component='span'
+                style={{
+                  color: '#424242',
+                  marginLeft: '5px',
+                  fontSize: '14px',
+                  textDecoration: 'none',
+                }}
+              >
                 Blogs
-              </Box>
+              </Link>
             )}
           </Grid>
 

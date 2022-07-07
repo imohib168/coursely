@@ -31,9 +31,8 @@ export const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 export const StyledBlogTitle = styled(Link)(({ theme }) => ({
-  fontSize: '22px',
-  fontWeight: 600,
-  color: theme.palette.black.main,
-  marginBottom: '20px',
   textDecoration: 'none',
+  fontWeight: 600,
+  fontSize: '22px',
+  color: theme.palette.black.main,
 }));

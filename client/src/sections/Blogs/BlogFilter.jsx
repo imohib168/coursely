@@ -26,12 +26,6 @@ const BlogFilter = () => {
           <FormControlLabel
             value='end'
             control={<Checkbox />}
-            label='All'
-            labelPlacement='end'
-          />
-          <FormControlLabel
-            value='end'
-            control={<Checkbox />}
             label='Newest'
             labelPlacement='end'
           />
