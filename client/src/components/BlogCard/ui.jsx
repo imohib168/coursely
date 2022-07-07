@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 
@@ -30,9 +30,10 @@ export const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.secondary.main,
 }));
 
-export const StyledBlogTitle = styled(Typography)(({ theme }) => ({
+export const StyledBlogTitle = styled(Link)(({ theme }) => ({
   fontSize: '22px',
   fontWeight: 600,
   color: theme.palette.black.main,
   marginBottom: '20px',
+  textDecoration: 'none',
 }));
