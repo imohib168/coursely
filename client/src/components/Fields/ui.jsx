@@ -9,7 +9,6 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
   marginBottom: '20px',
 
   '.MuiOutlinedInput-root': {
-    padding: 0,
     borderRadius: '10px',
   },
 }));

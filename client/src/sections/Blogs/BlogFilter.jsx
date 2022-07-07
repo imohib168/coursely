@@ -1,11 +1,20 @@
+import React, { useState } from 'react';
 import { Search } from '@mui/icons-material';
 import { Box, Checkbox, Container, FormControlLabel } from '@mui/material';
-import React from 'react';
-import { UIChip, UISimpleField } from '../../components';
+import {
+  UIButton,
+  UIChip,
+  UIModal,
+  UISimpleField,
+  UITextField,
+} from '../../components';
 import { StyledMainBox, StyledSearchBox, StyledIconBox } from '../../styles';
 import { StyledCategoryHeading } from './ui';
 
 const BlogFilter = () => {
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
+
   return (
     <StyledMainBox>
       <Container maxWidth='lg'>
@@ -19,6 +28,17 @@ const BlogFilter = () => {
             <Search />
           </StyledIconBox>
         </StyledSearchBox>
+
+        <UIButton
+          variant='contained'
+          bgColor='#202020'
+          textColor='#eeeeee'
+          hoverTextColor='#202020'
+          onClick={() => setOpen(true)}
+          sx={{ margin: '10px 0px 0px 0px' }}
+        >
+          Create Blog
+        </UIButton>
 
         <Box sx={{ margin: '2rem 0rem' }}>
           <StyledCategoryHeading>Sort Blogs by</StyledCategoryHeading>
@@ -47,6 +67,20 @@ const BlogFilter = () => {
           <UIChip label='Cloud' />
         </Box>
       </Container>
+
+      <UIModal
+        open={open}
+        handleClose={handleClose}
+        title='Create Blog'
+        btnText='Create'
+        width='500px'
+      >
+        <Box sx={{ marginTop: '10px' }}>
+          <UITextField label='Title' />
+          <UITextField multiline={true} minRows={4} maxRows={4} label='Body' />
+          <UITextField label='Category' />
+        </Box>
+      </UIModal>
     </StyledMainBox>
   );
 };
