@@ -1,12 +1,5 @@
-import { Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { styled } from '@mui/system';
-
-export const StyledMainBox = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'background',
-})(({ background }) => ({
-  backgroundColor: background ? background : 'transparent',
-  padding: '30px 0px',
-}));
 
 export const StyledImageGrid = styled(Grid)({
   display: 'flex',

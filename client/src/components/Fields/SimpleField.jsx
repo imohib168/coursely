@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSimpleField } from './ui';
+import { StyledSimpleField, StyledTextArea } from './ui';
 
 const UISimpleField = ({
   type,
@@ -10,7 +10,17 @@ const UISimpleField = ({
   sx,
   color,
 }) => {
-  return (
+  return type === 'textarea' ? (
+    <StyledTextArea
+      color={color}
+      placeholder={placeholder}
+      value={value}
+      onChnage={onChnage}
+      onClick={onClick}
+      sx={sx}
+      rows={3}
+    />
+  ) : (
     <StyledSimpleField
       color={color}
       type={type}

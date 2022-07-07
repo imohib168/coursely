@@ -17,7 +17,7 @@ import { footerLinksMain, footerLinksBlogs } from './mockData';
 const Footer = () => {
   return (
     <StyledFooter>
-      <Container>
+      <Container maxWidth='lg'>
         <Grid container>
           <Grid item xs={12}>
             <Grid container justifyContent='space-between'>

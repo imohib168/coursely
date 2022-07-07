@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid, Container } from '@mui/material';
-import { StyledMainBox } from './ui';
 import { UICategoryCard } from '../../components';
+import { StyledMainBox } from '../../styles';
 
 const Categories = () => {
   return (
     <StyledMainBox background='#424242'>
-      <Container sx={{ padding: '30px 0px 20px 0px' }}>
+      <Container maxWidth='lg' sx={{ padding: '30px 0px 20px 0px' }}>
         <Grid container justifyContent='space-between'>
           <UICategoryCard src='anihkfxp' category='Programming & Development' />
           <UICategoryCard src='vixtkkbk' category='Photography' />

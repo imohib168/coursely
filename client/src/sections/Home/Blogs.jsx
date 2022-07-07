@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Grid, Typography } from '@mui/material';
 import ASSETS from '../../utils/assets';
 import { UIButton } from '../../components';
-import { StyledMainBox, StyledHeading, StyledImageGrid } from './ui';
+import { StyledHeading, StyledImageGrid } from './ui';
+import { StyledMainBox } from '../../styles';
 
 const Blogs = () => {
   const naviagte = useNavigate();
 
   return (
-    <Container sx={{ padding: '30px 0px' }}>
+    <Container maxWidth='lg' sx={{ padding: '30px 0px' }}>
       <StyledMainBox>
         <Grid container justifyContent='space-between' alignItems='center'>
           <StyledImageGrid item xs={12} md={5.5}>

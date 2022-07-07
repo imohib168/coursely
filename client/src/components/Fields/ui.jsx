@@ -9,7 +9,6 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
   marginBottom: '20px',
 
   '.MuiOutlinedInput-root': {
-    padding: 0,
     borderRadius: '10px',
   },
 }));
@@ -44,6 +43,29 @@ export const StyledSimpleField = styled('input', {
   background: 'transparent',
   fontSize: '16px',
   color: !color ? theme.palette.primary.main : color,
+
+  '&:focus': {
+    outline: 'none',
+    border: `2px solid ${!color ? 'transparent' : color}`,
+  },
+
+  '::placeholder': {
+    color: !color ? theme.palette.primary.main : color,
+  },
+}));
+
+export const StyledTextArea = styled('textarea', {
+  shouldForwardProp: (prop) => prop !== 'color',
+})(({ theme, color }) => ({
+  fontFamily: 'Poppins',
+  flex: 1,
+  outline: 'none',
+  border: `2px solid ${!color ? 'transparent' : color}`,
+  background: 'transparent',
+  fontSize: '16px',
+  color: !color ? theme.palette.primary.main : color,
+  resize: 'vertical',
+  overflow: 'auto',
 
   '&:focus': {
     outline: 'none',
