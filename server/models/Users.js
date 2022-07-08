@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     roleId: { type: DataTypes.INTEGER },
     firstName: { type: DataTypes.STRING },
     lastName: { type: DataTypes.STRING },
-    phoneNumber: { type: DataTypes.STRING },
+    phone: { type: DataTypes.STRING },
     githubURL: { type: DataTypes.STRING },
     linkedinURL: { type: DataTypes.STRING },
     facebookURL: { type: DataTypes.STRING },
