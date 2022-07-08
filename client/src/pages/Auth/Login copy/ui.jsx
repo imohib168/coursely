@@ -21,7 +21,7 @@ export const StyledBox = styled(Box)(({ theme }) => ({
   background: '#ffffff',
   borderRadius: '18px',
   width: '80%',
-  height: 'auto',
+  height: '80%',
   padding: 8,
 }));
 

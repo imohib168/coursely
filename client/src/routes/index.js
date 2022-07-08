@@ -6,6 +6,7 @@ import { BasicLayout, ErrorLayout, HomeLayout, AuthLayout } from '../layouts';
 import InstructorRoute from './instructorAuthRoute';
 import StudentRoute from './studentAuthRoute';
 import GeneralRoute from './generalRoute';
+import AuthRoute from './authRoute';
 
 // Pages
 import {
@@ -26,8 +27,10 @@ const AppRoutes = () => {
       </Route>
 
       <Route element={<AuthLayout />}>
-        <Route path='login' element={<LoginPage />} />
-        <Route path='register' element={<RegisterPage />} />
+        <Route element={<AuthRoute />}>
+          <Route path='login' element={<LoginPage />} />
+          <Route path='register' element={<RegisterPage />} />
+        </Route>
       </Route>
 
       <Route element={<BasicLayout />}>

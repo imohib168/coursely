@@ -1,15 +1,21 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Container, Grid } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { StyledNavbar, StyledNavbarLogo } from './ui';
 import { StyledSearchBox, StyledIconBox } from '../../styles';
 import { UIButton, UISimpleField } from '../../components';
 import { Search } from '@mui/icons-material';
+import { logout } from '../../store/slices/authSlice';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const isBlogPage = pathname.includes('blogs');
+  const { user } = useSelector((state) => state.auth);
+
+  const handleUserLogout = () => dispatch(logout());
 
   return (
     <StyledNavbar component='nav'>
@@ -61,24 +67,49 @@ const Navbar = () => {
 
           {/* Login & Register BUtton */}
           <Grid item xs={2}>
-            <UIButton
-              variant='outlined'
-              textColor='#424242'
-              hoverTextColor='#424242'
-              onClick={() => navigate('/login')}
-              sx={{ marginRight: 2 }}
-            >
-              Login
-            </UIButton>
-            <UIButton
-              variant='contained'
-              bgColor='#424242'
-              textColor='#eeeeee'
-              hoverTextColor='#424242'
-              onClick={() => navigate('/register')}
-            >
-              Register
-            </UIButton>
+            {user ? (
+              <>
+                <UIButton
+                  variant='outlined'
+                  textColor='#424242'
+                  hoverTextColor='#424242'
+                  onClick={handleUserLogout}
+                  sx={{ marginRight: 2 }}
+                >
+                  Logout
+                </UIButton>
+                <UIButton
+                  variant='contained'
+                  bgColor='#424242'
+                  textColor='#eeeeee'
+                  hoverTextColor='#424242'
+                  onClick={() => navigate('/profile')}
+                >
+                  Profile
+                </UIButton>
+              </>
+            ) : (
+              <>
+                <UIButton
+                  variant='outlined'
+                  textColor='#424242'
+                  hoverTextColor='#424242'
+                  onClick={() => navigate('/login')}
+                  sx={{ marginRight: 2 }}
+                >
+                  Login
+                </UIButton>
+                <UIButton
+                  variant='contained'
+                  bgColor='#424242'
+                  textColor='#eeeeee'
+                  hoverTextColor='#424242'
+                  onClick={() => navigate('/register')}
+                >
+                  Register
+                </UIButton>
+              </>
+            )}
           </Grid>
         </Grid>
       </Container>

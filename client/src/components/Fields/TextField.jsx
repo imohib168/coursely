@@ -12,7 +12,12 @@ const UITextField = ({ size, label, ...other }) => {
       {...other}
     />
   ) : (
-    <StyledTextField size={size} id='demo-helper-text-aligned' label={label} />
+    <StyledTextField
+      size={size}
+      id='demo-helper-text-aligned'
+      label={label}
+      {...other}
+    />
   );
 };
 

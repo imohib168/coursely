@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Grid } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   StyledImage,
   StyledImageGrid,
@@ -10,12 +13,48 @@ import {
   StyledForm,
   StyledButtonContainer,
 } from './ui';
-import { UIButton, UIPasswordField, UITextField } from '../../../components';
+import {
+  UIButton,
+  UIPasswordField,
+  UISelectField,
+  UITextField,
+} from '../../../components';
 import { Link, useNavigate } from 'react-router-dom';
 import ASSET from '../../../utils/assets';
+import { schema } from './schema';
+import { fieldsData, initialValues, roleOptions } from './mockData';
+import { register, userReset } from '../../../store/slices/authSlice';
+import { toast } from 'react-toastify';
+import { StyledErrorMessage } from '../../../styles';
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isError, message, isSuccess } = useSelector(
+    (state) => state.auth
+  );
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema), defaultValue: initialValues });
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+
+    if (isSuccess) {
+      toast.success('Account successfully created');
+      navigate('/login');
+    }
+
+    dispatch(userReset());
+  }, [dispatch, isError, isSuccess, message, navigate, user]);
+
+  const handleUserRegister = (data) => {
+    const { confirmPassword, ...userData } = data;
+    dispatch(register(userData));
+  };
 
   return (
     <Box>
@@ -33,32 +72,74 @@ const Register = () => {
               Signup here to get Started and explore the world of learning
             </StyledAuthSlogan>
 
-            <StyledForm>
+            <StyledForm onSubmit={handleSubmit(handleUserRegister)}>
               <Grid container justifyContent='space-between'>
-                {/* First Name */}
+                {fieldsData?.map(({ name, label }) => (
+                  <Grid key={name} item xs={12} md={5.9}>
+                    <Controller
+                      name={name}
+                      control={control}
+                      render={({ field }) => (
+                        <>
+                          <UITextField label={label} {...field} />
+                          <StyledErrorMessage>
+                            {errors[name]?.message}
+                          </StyledErrorMessage>
+                        </>
+                      )}
+                    />
+                  </Grid>
+                ))}
+
+                {/* Role */}
                 <Grid item xs={12} md={5.9}>
-                  <UITextField label='First Name' />
-                </Grid>
-                {/* Last Name */}
-                <Grid item xs={12} md={5.9}>
-                  <UITextField label='Last Name' />
-                </Grid>
-                {/* Username */}
-                <Grid item xs={12} md={5.9}>
-                  <UITextField label='Username' />
-                </Grid>
-                {/* Email */}
-                <Grid item xs={12} md={5.9}>
-                  <UITextField label='Email' />
+                  <Controller
+                    name='role'
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <UISelectField
+                          {...field}
+                          label='Role'
+                          options={roleOptions}
+                        />
+                        <StyledErrorMessage>
+                          {errors.role?.message}
+                        </StyledErrorMessage>
+                      </>
+                    )}
+                  />
                 </Grid>
 
                 {/* Password */}
                 <Grid item xs={12} md={5.9}>
-                  <UIPasswordField label='Password' />
+                  <Controller
+                    name='password'
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <UIPasswordField label='Password' {...field} />
+                        <StyledErrorMessage>
+                          {errors.password?.message}
+                        </StyledErrorMessage>
+                      </>
+                    )}
+                  />
                 </Grid>
                 {/* Confirm Password */}
                 <Grid item xs={12} md={5.9}>
-                  <UIPasswordField label='Confirm Password' />
+                  <Controller
+                    name='confirmPassword'
+                    control={control}
+                    render={({ field }) => (
+                      <>
+                        <UIPasswordField label='Confirm Password' {...field} />
+                        <StyledErrorMessage>
+                          {errors.confirmPassword?.message}
+                        </StyledErrorMessage>
+                      </>
+                    )}
+                  />
                 </Grid>
               </Grid>
 
