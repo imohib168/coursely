@@ -1,10 +1,6 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
 import ASSET from '../../../utils/assets';
 import {
   StyledImage,
@@ -17,35 +13,9 @@ import {
   StyledButtonContainer,
 } from './ui';
 import { UIButton, UIPasswordField, UITextField } from '../../../components';
-import { StyledErrorMessage } from '../../../styles';
-import { schema } from './schema';
-import { login } from '../../../store/slices/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { isError, message, isSuccess } = useSelector((state) => state.auth);
-
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValue: { email: '', password: '' },
-  });
-
-  const handleUserLogin = (data) => {
-    dispatch(login(data));
-
-    if (isError) toast.error(message);
-
-    if (isSuccess) {
-      toast.success('Login Successful');
-      reset({ email: '', password: '' });
-    }
-  };
 
   return (
     <Box>
@@ -74,38 +44,16 @@ const Login = () => {
 
             <StyledAuthSlogan>Login to your account</StyledAuthSlogan>
 
-            <StyledForm onSubmit={handleSubmit(handleUserLogin)}>
+            <StyledForm>
               <Grid container justifyContent='space-around'>
                 {/* Email */}
                 <Grid item xs={12}>
-                  <Controller
-                    name='email'
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UITextField label='email' {...field} />
-                        <StyledErrorMessage>
-                          {errors.email?.message}
-                        </StyledErrorMessage>
-                      </>
-                    )}
-                  />
+                  <UITextField label='Email' />
                 </Grid>
 
                 {/* Password */}
                 <Grid item xs={12}>
-                  <Controller
-                    name='password'
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UIPasswordField label='Password' {...field} />
-                        <StyledErrorMessage>
-                          {errors.password?.message}
-                        </StyledErrorMessage>
-                      </>
-                    )}
-                  />
+                  <UIPasswordField label='Password' />
                 </Grid>
               </Grid>
 

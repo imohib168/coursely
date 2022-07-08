@@ -1,12 +1,12 @@
 export const initialValues = {
-  firstName: 'Sajjad',
-  lastName: 'Ahmed',
-  username: 'sajjad45',
-  email: 'sajjad@gmail.com',
-  phone: '3127654321',
-  role: 'STUDENT',
-  password: 'hello123',
-  confirmPassword: 'hello123',
+  firstName: '',
+  lastName: '',
+  username: '',
+  email: '',
+  phone: '',
+  role: '',
+  password: '',
+  confirmPassword: '',
 };
 
 export const roleOptions = [

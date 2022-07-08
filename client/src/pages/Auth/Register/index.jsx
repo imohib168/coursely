@@ -30,7 +30,7 @@ import { StyledErrorMessage } from '../../../styles';
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isError, message } = useSelector((state) => state.auth);
+  const { isError, message, isSuccess } = useSelector((state) => state.auth);
 
   const {
     control,
@@ -43,13 +43,12 @@ const Register = () => {
     const { confirmPassword, ...userData } = data;
     dispatch(register(userData));
 
-    if (isError) {
-      toast.error(message);
-      return;
-    }
+    if (isError) toast.error(message);
 
-    reset();
-    toast.success('Account has been created');
+    if (isSuccess) {
+      reset(initialValues);
+      toast.success('Account has been created');
+    }
   };
 
   return (
