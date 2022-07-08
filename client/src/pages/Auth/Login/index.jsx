@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Grid } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,32 +19,37 @@ import {
 import { UIButton, UIPasswordField, UITextField } from '../../../components';
 import { StyledErrorMessage } from '../../../styles';
 import { schema } from './schema';
-import { login } from '../../../store/slices/authSlice';
+import { login, userReset } from '../../../store/slices/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isError, message, isSuccess } = useSelector((state) => state.auth);
+  const { user, isError, message, isSuccess } = useSelector(
+    (state) => state.auth
+  );
 
   const {
     control,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValue: { email: '', password: '' },
   });
 
-  const handleUserLogin = (data) => {
-    dispatch(login(data));
-
+  useEffect(() => {
     if (isError) toast.error(message);
 
-    if (isSuccess) {
-      toast.success('Login Successful');
-      reset({ email: '', password: '' });
+    if (user && isSuccess) {
+      toast.success('Login Successfull');
+      navigate('/');
     }
+
+    dispatch(userReset());
+  }, [dispatch, isError, isSuccess, message, navigate, user]);
+
+  const handleUserLogin = (data) => {
+    dispatch(login(data));
   };
 
   return (

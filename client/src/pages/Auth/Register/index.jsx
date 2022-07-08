@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
@@ -23,32 +23,37 @@ import { Link, useNavigate } from 'react-router-dom';
 import ASSET from '../../../utils/assets';
 import { schema } from './schema';
 import { fieldsData, initialValues, roleOptions } from './mockData';
-import { register } from '../../../store/slices/authSlice';
+import { register, userReset } from '../../../store/slices/authSlice';
 import { toast } from 'react-toastify';
 import { StyledErrorMessage } from '../../../styles';
 
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isError, message, isSuccess } = useSelector((state) => state.auth);
+  const { user, isError, message, isSuccess } = useSelector(
+    (state) => state.auth
+  );
 
   const {
     control,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema), defaultValue: initialValues });
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+
+    if (user && isSuccess) {
+      toast.success('Account successfully created');
+      navigate('/login');
+    }
+
+    dispatch(userReset());
+  }, [dispatch, isError, isSuccess, message, navigate, user]);
 
   const handleUserRegister = (data) => {
     const { confirmPassword, ...userData } = data;
     dispatch(register(userData));
-
-    if (isError) toast.error(message);
-
-    if (isSuccess) {
-      reset(initialValues);
-      toast.success('Account has been created');
-    }
   };
 
   return (
