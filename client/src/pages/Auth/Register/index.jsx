@@ -43,7 +43,7 @@ const Register = () => {
   useEffect(() => {
     if (isError) toast.error(message);
 
-    if (user && isSuccess) {
+    if (isSuccess) {
       toast.success('Account successfully created');
       navigate('/login');
     }

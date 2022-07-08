@@ -1,16 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const StudentRoute = () => {
-  // Get User Role or RoleID
-  // const { role } = useSelector();
+  const { user } = useSelector((state) => state.auth);
 
-  const role = 'USER';
   const AVAILABLE_ROLES = ['USER'];
 
-  if (AVAILABLE_ROLES.includes(role)) return <Outlet />;
+  if (user && AVAILABLE_ROLES.includes(user.role)) return <Outlet />;
 
-  return <Navigate to='/' replace />;
+  return <Navigate to='/' />;
 };
 
 export default StudentRoute;

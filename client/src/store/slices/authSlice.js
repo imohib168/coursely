@@ -55,7 +55,7 @@ export const authSlice = createSlice({
           ...state,
           isLoading: false,
           isSuccess: true,
-          user: action.payload,
+          // user: action.payload,
         };
       })
       .addCase(register.rejected, (state, action) => {
