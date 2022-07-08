@@ -8,19 +8,18 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { StyledFormControl } from './ui';
 
-const UIPasswordField = ({ label }) => {
+const UIPasswordField = ({ label, ...other }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <StyledFormControl variant='outlined' sx={{ width: '100%' }}>
       <InputLabel htmlFor='outlined-adornment-password'>{label}</InputLabel>
       <OutlinedInput
+        {...other}
         label={label}
         InputLabelProps={{ shrink: true }}
         id='outlined-adornment-password'
         type={showPassword ? 'text' : 'password'}
-        // value={values.password}
-        // onChange={handleChange('password')}
         endAdornment={
           <InputAdornment position='end'>
             <IconButton

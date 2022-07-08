@@ -12,3 +12,4 @@ export { default as UIModal } from './Modal';
 export { default as UITextField } from './Fields/TextField';
 export { default as UIPasswordField } from './Fields/PasswordField';
 export { default as UISimpleField } from './Fields/SimpleField';
+export { default as UISelectField } from './Fields/SelectField';

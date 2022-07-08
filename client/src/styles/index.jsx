@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 
 export const StyledMainBox = styled(Box, {
@@ -29,4 +29,10 @@ export const StyledIconBox = styled(Box)(({ theme }) => ({
   svg: {
     fontSize: '24px',
   },
+}));
+
+export const StyledErrorMessage = styled(Typography)(() => ({
+  marginBottom: '20px',
+  fontSize: '13px',
+  color: 'red',
 }));

@@ -8,17 +8,10 @@ export const HomeLayoutWrapper = styled(Box)({});
 export const BasicLayoutWrapper = styled(Box)({});
 
 // Auth Layout
-export const AuthLayoutWrapper = styled(Box)({
-  maxWidth: '1800px',
-  margin: '0 auto',
-  height: '100vh',
-  overflow: 'hidden',
-});
+export const AuthLayoutWrapper = styled(Box)({ minHeight: '100vh' });
 
 // Error Layout
 export const ErrorLayoutWrapper = styled(Box)({
-  maxWidth: '1800px',
-  margin: '0 auto',
   position: 'relative',
   overflow: 'hidden',
   height: '100vh',
