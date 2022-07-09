@@ -15,7 +15,7 @@ const addComment = asyncHandler(async (req, res) => {
   const { commentText, username, blogId } = req.body;
 
   if (!username || !commentText || !blogId) {
-    res.status(400);
+    res.status(400).json({ message: 'Please provide all fields' });
     throw new Error('Please provide all fields');
   }
 
@@ -31,7 +31,7 @@ const addComment = asyncHandler(async (req, res) => {
 
     res.status(200).json({ newComment });
   } else {
-    res.status(400);
+    res.status(400).json({ message: 'Can not post comment' });
     throw new Error('Can not post comment');
   }
 });
@@ -46,11 +46,11 @@ const deleteComment = asyncHandler(async (req, res) => {
     if (deletedComment) {
       res.status(200).json('Comment successfully deleted');
     } else {
-      res.status(400);
+      res.status(400).json({ message: 'Can not post comment' });
       throw new Error('Can not post comment');
     }
   } else {
-    res.status(400);
+    res.status(400).json({ message: 'Something went wrong' });
     throw new Error('Something went wrong');
   }
 });

@@ -4,16 +4,25 @@ const asyncHandler = require('express-async-handler');
 const { Blogs, Likes } = require('../models');
 
 const getAllBlogs = asyncHandler(async (req, res) => {
-  const { id: byId, search: bySearch, category: byCategory } = req?.query;
+  const {
+    id: byId,
+    search: bySearch,
+    category: byCategory,
+    title: byTitle,
+  } = req?.query;
 
   const filters = {};
+  const orders = [];
 
   if (bySearch) filters.title = { [Op.like]: `%${bySearch}%` };
   if (byCategory) filters.category = byCategory;
 
+  if (byTitle) orders.push(['title', byTitle]);
+  if (byId) orders.push(['id', byId]);
+
   const getBlogs = await Blogs.findAll({
     include: [Likes],
-    order: [['id', byId]],
+    order: orders,
     where: filters,
   });
 
@@ -29,7 +38,7 @@ const getblogCategories = asyncHandler(async (req, res) => {
   if (getCategories) {
     res.status(200).json(getCategories);
   } else {
-    res.status(400);
+    res.status(400).json({ message: 'Something went wrong' });
     throw new Error('Something went wrong');
   }
 });
@@ -39,7 +48,7 @@ const createBlog = asyncHandler(async (req, res) => {
   const userId = req.user.id;
 
   if (!title || !text || !username || !category) {
-    res.status(400);
+    res.status(400).json({ message: 'Please provide all fields' });
     throw new Error('Please provide all fields');
   }
 
@@ -67,7 +76,7 @@ const getBlogById = asyncHandler(async (req, res) => {
   if (blog) {
     res.status(200).json(blog);
   } else {
-    res.status(400);
+    res.status(400).json({ message: `Post with this ID: ${id} is not found` });
     throw new Error(`Post with this ID: ${id} is not found`);
   }
 });
@@ -80,7 +89,7 @@ const deleteBlog = asyncHandler(async (req, res) => {
   if (deletedBlog) {
     res.status(200).json('Post Successfully deleted.');
   } else {
-    res.status(400);
+    res.status(400).json({ message: `Post with this ID: ${id} is not found` });
     throw new Error(`Post with this ID: ${id} is not found`);
   }
 });

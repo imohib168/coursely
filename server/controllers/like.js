@@ -8,7 +8,7 @@ const likeBlog = asyncHandler(async (req, res) => {
   const blogExist = await Blogs.findOne({ where: { id: blogId } });
 
   if (!blogExist) {
-    res.status(400);
+    res.status(400).json({ message: 'Blog not found' });
     throw new Error('Blog not found');
   } else {
     const likeExist = await Likes.findOne({
