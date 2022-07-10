@@ -22,15 +22,13 @@ const BlogDetail = () => {
     getById();
   }, [id]);
 
-  console.log(blog);
-
   return (
     <Box sx={{ minHeight: '80vh' }}>
       <Container maxWidth='lg'>
         <Grid container display='flex' justifyContent='space-between'>
           <Grid item xs={12} md={7.9}>
             <BlogSection blog={blog} />
-            <CommentsSection />
+            <CommentsSection blogId={id} />
           </Grid>
 
           <StyledDetailRightGrid item xs={12} md={3.9}>

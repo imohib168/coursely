@@ -9,6 +9,7 @@ const UIButton = ({
   onClick,
   hoverTextColor,
   sx,
+  ...other
 }) => {
   return (
     <StyledButton
@@ -20,6 +21,7 @@ const UIButton = ({
       onClick={onClick}
       sx={sx}
       type='submit'
+      {...other}
     >
       {children}
     </StyledButton>

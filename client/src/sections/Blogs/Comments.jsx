@@ -1,44 +1,81 @@
-import React from 'react';
-import { Typography } from '@mui/material';
-import { UIComment, UISimpleField } from '../../components';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography } from '@mui/material';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { UIButton, UIComment, UISimpleField } from '../../components';
 import { commentFieldStyles, StyledCommentSectionBox } from './ui';
+import { getComments, postComment } from '../../store/slices/commentSlice';
 
-const Comments = () => {
+const Comments = ({ blogId }) => {
+  const dispatch = useDispatch();
+  const [comment, setComment] = useState('');
+  const { comments, isError, message } = useSelector((state) => state.comments);
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getComments(blogId));
+  }, [blogId, dispatch]);
+
+  const handlePostComment = (e) => {
+    e.preventDefault();
+
+    if (!comment) {
+      toast.error("Comment can't be empty");
+    }
+
+    if (comment) {
+      dispatch(
+        postComment({
+          commentText: comment,
+          username: user?.username,
+          blogId: blogId,
+        })
+      );
+      setComment('');
+    }
+  };
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+  }, [comment, isError, message]);
+
   return (
     <StyledCommentSectionBox id='comment-section'>
       <Typography sx={{ fontWeight: 600, fontSize: '20px' }}>
-        4 Comments
+        {comments && comments.length ? comments.length : 0} Comments
       </Typography>
 
-      <form>
+      <form onSubmit={handlePostComment}>
         <UISimpleField
           type='textarea'
           placeholder='Comment...'
           color='#202020'
           sx={commentFieldStyles}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
         />
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <UIButton
+            variant='contained'
+            bgColor='#424242'
+            textColor='#eeeeee'
+            hoverTextColor='#424242'
+            hidden
+          >
+            Post Comment
+          </UIButton>
+        </Box>
       </form>
 
-      <UIComment
-        username='imohib168'
-        commentText='This Blog is helpful This Blog is helpfulThis Blog is helpfulThis Blog is helpfulThis Blog is helpful'
-        time='3h ago'
-      />
-      <UIComment
-        username='imohib168'
-        commentText='This Blog is helpful'
-        time='3h ago'
-      />
-      <UIComment
-        username='imohib168'
-        commentText='This Blog is helpful This Blog is helpfulThis Blog is helpful'
-        time='3h ago'
-      />
-      <UIComment
-        username='imohib168'
-        commentText='This Blog is helpful This Blog is helpful'
-        time='3h ago'
-      />
+      {comments &&
+        comments?.map((comment) => (
+          <UIComment
+            username={comment.username}
+            commentText={comment.commentText}
+            time='3h ago'
+          />
+        ))}
     </StyledCommentSectionBox>
   );
 };

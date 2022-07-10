@@ -1,7 +1,6 @@
 import { get, post, del } from '../../utils/httpService';
 
 export const getAllBlogs = async (id, search, title, category) => {
-  console.log(id, search);
   const response =
     await get(`/blog/blogs?id=${id}&search=${search}&title=${title}&category=${category}
   `);
