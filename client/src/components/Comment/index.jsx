@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Avatar, Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import ASSETS from '../../utils/assets';
@@ -37,7 +38,7 @@ const UIComment = ({ username, commentText, time }) => {
       <StyledCommentBody>
         <Box component='div'>
           <Typography>{username}</Typography>
-          <Typography>{time}</Typography>
+          <Typography>{moment(time).startOf('hour').fromNow()}</Typography>
         </Box>
 
         <Typography>{commentText}</Typography>

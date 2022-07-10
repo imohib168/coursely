@@ -81,9 +81,6 @@ const UIBlogCard = ({
               </HashLink>
             )}
           </Box>
-          {!isDetailPage && (
-            <StyledLink to={`/blogs/${id}`}>2 Comments</StyledLink>
-          )}
         </StyledBottomGrid>
       </Grid>
     </StyledBlogCard>

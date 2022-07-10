@@ -70,7 +70,7 @@ const blogSlice = createSlice({
       .addCase(getBlogs.rejected, (state, action) => {
         return {
           ...state,
-          blogs: [],
+          blogs: null,
           isLoading: false,
           isError: true,
           message: action.payload.message,
@@ -91,7 +91,7 @@ const blogSlice = createSlice({
       .addCase(postBlog.rejected, (state, action) => {
         return {
           ...state,
-          blogs: [],
+          blogs: null,
           isLoading: false,
           isError: true,
           message: action.payload.message,

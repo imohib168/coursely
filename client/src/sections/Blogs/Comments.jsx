@@ -73,7 +73,7 @@ const Comments = ({ blogId }) => {
           <UIComment
             username={comment.username}
             commentText={comment.commentText}
-            time='3h ago'
+            time={comment.createdAt}
           />
         ))}
     </StyledCommentSectionBox>
