@@ -2,24 +2,22 @@ import React from 'react';
 import { StyledMainBox } from '../../styles';
 import { UIBlogCard } from '../../components';
 
-const BlogPost = () => {
-  const text = `
-        Lorem ipsum  is simply dummy text of the printing and typesetting industry 
-        is simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry
-        simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry
-        simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry
-        simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry
-  `;
+const BlogPost = ({ blog }) => {
+  const _blog = blog[0];
 
   return (
     <StyledMainBox>
-      <UIBlogCard
-        isDetailPage
-        title='Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum'
-        username='Mohib Ismail'
-        time='3m ago'
-        blogText={text}
-      />
+      {_blog && (
+        <UIBlogCard
+          isDetailPage
+          id={_blog?.id}
+          title={_blog?.title}
+          username={_blog?.username}
+          time={_blog?.createdAt}
+          blogText={_blog?.text}
+          category={_blog?.category}
+        />
+      )}
     </StyledMainBox>
   );
 };

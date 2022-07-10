@@ -1,13 +1,7 @@
 import React from 'react';
 import { Close } from '@mui/icons-material';
-import {
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  IconButton,
-} from '@mui/material';
+import { DialogTitle, DialogContent, IconButton } from '@mui/material';
 import { StyledDialog } from './ui';
-import UIButton from '../Button';
 
 const BootstrapDialogTitle = ({ children, onClose, ...other }) => {
   return (
@@ -31,14 +25,7 @@ const BootstrapDialogTitle = ({ children, onClose, ...other }) => {
   );
 };
 
-export const UIModal = ({
-  open,
-  children,
-  title,
-  btnText,
-  handleClose,
-  width,
-}) => {
+export const UIModal = ({ open, width, title, children, handleClose }) => {
   return (
     <StyledDialog
       onClose={handleClose}
@@ -50,18 +37,6 @@ export const UIModal = ({
       </BootstrapDialogTitle>
 
       <DialogContent>{children}</DialogContent>
-
-      <DialogActions>
-        <UIButton
-          onClick={handleClose}
-          bgColor='#424242'
-          textColor='#eeeeee'
-          hoverTextColor='#424242'
-          sx={{ width: '120px', borderRadius: '8px' }}
-        >
-          {btnText}
-        </UIButton>
-      </DialogActions>
     </StyledDialog>
   );
 };

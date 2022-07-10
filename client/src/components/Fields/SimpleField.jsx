@@ -5,7 +5,7 @@ const UISimpleField = ({
   type,
   placeholder,
   value,
-  onChnage,
+  onChange,
   onClick,
   sx,
   color,
@@ -15,7 +15,7 @@ const UISimpleField = ({
       color={color}
       placeholder={placeholder}
       value={value}
-      onChnage={onChnage}
+      onChange={onChange}
       onClick={onClick}
       sx={sx}
       rows={3}
@@ -26,7 +26,7 @@ const UISimpleField = ({
       type={type}
       placeholder={placeholder}
       value={value}
-      onChnage={onChnage}
+      onChange={onChange}
       onClick={onClick}
       sx={sx}
     />
