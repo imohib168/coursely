@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { StyledMainBox } from '../../styles';
 import { UIBlogCard } from '../../components';
+import { getBlogs } from '../../store/slices/blogSlice';
 
 const BlogPost = () => {
+  const dispatch = useDispatch();
+
+  const { blogs } = useSelector((state) => state.blogs);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, [dispatch]);
+
   return (
     <StyledMainBox>
-      {[1, 1].map((_, index) => (
+      {blogs?.map((blog) => (
         <UIBlogCard
-          key={index}
-          title='Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum'
-          username='Mohib Ismail'
-          time='3m ago'
-          blogText='Lorem ipsum  is simply dummy text of the printing and typesetting industry 
-        is simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry
-        simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry
-        simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry
-        simply dummy text of the printing and typesetting industry simply dummy text of the printing and typesetting industry'
+          id={blog.id}
+          key={blog.id}
+          title={blog.title}
+          username={blog.username}
+          time={blog.createdAt}
+          blogText={blog.text}
+          category={blog.category}
         />
       ))}
     </StyledMainBox>

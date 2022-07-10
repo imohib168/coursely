@@ -5,7 +5,7 @@ export const StyledRightGrid = styled(Grid)(() => ({
   backgroundColor: '#ffffff',
   minHeight: '50vh',
   maxHeight: '60vh',
-  marginTop: '30px',
+  margin: '30px 0px',
 }));
 
 export const StyledDetailRightGrid = styled(Grid)(() => ({

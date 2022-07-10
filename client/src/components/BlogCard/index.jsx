@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { HashLink } from 'react-router-hash-link';
 import { Favorite, FavoriteBorder, ForumOutlined } from '@mui/icons-material';
 import { Avatar, Box, Checkbox, Grid, Typography } from '@mui/material';
@@ -12,7 +13,15 @@ import {
 } from './ui';
 import UIChip from '../Chip';
 
-const UIBlogCard = ({ title, username, time, blogText, isDetailPage }) => {
+const UIBlogCard = ({
+  id,
+  title,
+  username,
+  time,
+  blogText,
+  isDetailPage,
+  category,
+}) => {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const getBlogText = (text) => {
@@ -20,7 +29,7 @@ const UIBlogCard = ({ title, username, time, blogText, isDetailPage }) => {
       return (
         <>
           {text.slice(0, 400)}{' '}
-          <StyledLink to='/blogs/1'>Read more...</StyledLink>
+          <StyledLink to={`/blogs/${id}`}>Read more...</StyledLink>
         </>
       );
 
@@ -40,13 +49,13 @@ const UIBlogCard = ({ title, username, time, blogText, isDetailPage }) => {
             <Avatar src={ASSETS.avatar.img} alt={ASSETS.avatar.alt} />
             <StyledBlogDetailText>
               <Typography>{username}</Typography>
-              <Typography>{time}</Typography>
+              <Typography>{moment(time).startOf('hour').fromNow()}</Typography>
             </StyledBlogDetailText>
           </Box>
 
           <Box>
             <UIChip
-              label='Category'
+              label={category}
               sx={{ backgroundColor: '#eeeeee', color: '#424242' }}
             />
           </Box>
@@ -54,7 +63,7 @@ const UIBlogCard = ({ title, username, time, blogText, isDetailPage }) => {
 
         <Grid item sx={{ marginBottom: 2 }}>
           <Typography sx={{ marginBottom: 2 }}>
-            <StyledBlogTitle to='/blogs/1'>{title}</StyledBlogTitle>
+            <StyledBlogTitle to={`/blogs/${id}`}>{title}</StyledBlogTitle>
           </Typography>
           <Typography>{getBlogText(blogText)}</Typography>
         </Grid>
@@ -67,12 +76,11 @@ const UIBlogCard = ({ title, username, time, blogText, isDetailPage }) => {
               disableRipple
             />
             {!isDetailPage && (
-              <HashLink to='/blogs/1#comment-section'>
+              <HashLink to={`/blogs/${id}#comment-section`}>
                 <ForumOutlined sx={{ marginTop: 1, color: '#9e9e9e' }} />
               </HashLink>
             )}
           </Box>
-          {!isDetailPage && <StyledLink to='/blogs/1'>2 Comments</StyledLink>}
         </StyledBottomGrid>
       </Grid>
     </StyledBlogCard>

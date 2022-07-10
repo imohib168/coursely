@@ -29,3 +29,7 @@ export const commentFieldStyles = {
   padding: '12px',
   width: '100%',
 };
+
+export const StyledCategory = styled('span')({
+  fontSize: '13px',
+});

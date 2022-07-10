@@ -20,11 +20,19 @@ const getAllBlogs = asyncHandler(async (req, res) => {
   if (byTitle) orders.push(['title', byTitle]);
   if (byId) orders.push(['id', byId]);
 
-  const getBlogs = await Blogs.findAll({
-    include: [Likes],
-    order: orders,
-    where: filters,
-  });
+  let getBlogs;
+
+  if (!bySearch && !byCategory && !byTitle && !byId) {
+    getBlogs = await Blogs.findAll({
+      include: [Likes],
+    });
+  } else {
+    getBlogs = await Blogs.findAll({
+      include: [Likes],
+      order: orders,
+      where: filters,
+    });
+  }
 
   res.status(200).json(getBlogs);
 });
@@ -36,7 +44,7 @@ const getblogCategories = asyncHandler(async (req, res) => {
   );
 
   if (getCategories) {
-    res.status(200).json(getCategories);
+    res.status(200).json([...getCategories, { category: 'All' }]);
   } else {
     res.status(400).json({ message: 'Something went wrong' });
     throw new Error('Something went wrong');
@@ -60,12 +68,12 @@ const createBlog = asyncHandler(async (req, res) => {
     category,
   });
 
-  const postBlog = {
-    blog: newBlog,
-    user: req.user,
-  };
-
-  res.status(200).json(postBlog);
+  if (newBlog) {
+    res.status(200).json(newBlog);
+  } else {
+    res.status(400).json({ message: `Something went wrong` });
+    throw new Error(`Something went wrong`);
+  }
 });
 
 const getBlogById = asyncHandler(async (req, res) => {
@@ -74,7 +82,7 @@ const getBlogById = asyncHandler(async (req, res) => {
   const blog = await Blogs.findOne({ where: { id: id }, include: [Likes] });
 
   if (blog) {
-    res.status(200).json(blog);
+    res.status(200).json([blog]);
   } else {
     res.status(400).json({ message: `Post with this ID: ${id} is not found` });
     throw new Error(`Post with this ID: ${id} is not found`);
@@ -94,10 +102,29 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 });
 
+const getRelatedBlogs = asyncHandler(async (req, res) => {
+  const { category, blogId } = req?.query;
+
+  const blogsByCategory = await Blogs.findAll({
+    where: { category: category },
+  });
+
+  const filteredRelatedBlogs = blogsByCategory.filter(
+    (blog) => blog.id != blogId
+  );
+
+  if (filteredRelatedBlogs.length > 0) {
+    res.status(200).json(filteredRelatedBlogs);
+  } else {
+    res.status(400).json({ message: 'No Related Blogs' });
+  }
+});
+
 module.exports = {
   getAllBlogs,
   createBlog,
   getBlogById,
   deleteBlog,
+  getRelatedBlogs,
   getblogCategories,
 };
