@@ -102,10 +102,29 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 });
 
+const getRelatedBlogs = asyncHandler(async (req, res) => {
+  const { category, blogId } = req?.query;
+
+  const blogsByCategory = await Blogs.findAll({
+    where: { category: category },
+  });
+
+  const filteredRelatedBlogs = blogsByCategory.filter(
+    (blog) => blog.id != blogId
+  );
+
+  if (filteredRelatedBlogs.length > 0) {
+    res.status(200).json(filteredRelatedBlogs);
+  } else {
+    res.status(400).json({ message: 'No Related Blogs' });
+  }
+});
+
 module.exports = {
   getAllBlogs,
   createBlog,
   getBlogById,
   deleteBlog,
+  getRelatedBlogs,
   getblogCategories,
 };
