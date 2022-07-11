@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Box, Container, Grid } from '@mui/material';
 import {
   BlogSection,
@@ -15,8 +16,14 @@ const BlogDetail = () => {
 
   useEffect(() => {
     const getById = async () => {
-      const getBlog = await getBlogById(id);
-      setBlog(getBlog);
+      try {
+        const getBlog = await getBlogById(id);
+        if (getBlog) {
+          setBlog(getBlog);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
     };
 
     getById();
@@ -32,7 +39,7 @@ const BlogDetail = () => {
           </Grid>
 
           <StyledDetailRightGrid item xs={12} md={3.9}>
-            <RelatedBlogsSection />
+            <RelatedBlogsSection blog={blog} />
           </StyledDetailRightGrid>
         </Grid>
       </Container>

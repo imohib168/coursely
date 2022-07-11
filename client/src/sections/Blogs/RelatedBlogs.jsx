@@ -1,9 +1,28 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getRelatedBlogs } from '../../api/blogs';
 import { StyledOtherBlog } from './ui';
 
-const RelatedBlogs = () => {
+const RelatedBlogs = ({ blog }) => {
+  const [relatedBlogs, setRelatedBlogs] = useState(null);
+  const [hasBlogs, setHasBlogs] = useState(false);
+
+  useEffect(() => {
+    const relatedBlogs = async () => {
+      try {
+        const blogs = await getRelatedBlogs(blog[0]?.category, blog[0]?.id);
+        setHasBlogs(true);
+        setRelatedBlogs(blogs);
+      } catch (error) {
+        setHasBlogs(false);
+      }
+    };
+    relatedBlogs();
+  }, [blog]);
+
+  console.log(relatedBlogs);
+
   const title = `Lorem ipsum dolor sit amet consectetur adipisicing elit.
     Architecto porro voluptates dolores ducimus! Cumque iure quas, qui
     amet dolores dolore repellendus porro reiciendis. Vel nostrum
@@ -20,13 +39,21 @@ const RelatedBlogs = () => {
         Related Blogs
       </Typography>
 
-      {[1, 1, 1].map((_, index) => (
-        <Link to='/blogs/3' style={{ textDecoration: 'none' }} key={index}>
-          <StyledOtherBlog>
-            <Typography>{getTitle(title)}</Typography>
-          </StyledOtherBlog>
-        </Link>
-      ))}
+      {hasBlogs ? (
+        relatedBlogs.map((blog) => (
+          <Link
+            to={`/blogs/${blog?.id}`}
+            style={{ textDecoration: 'none' }}
+            key={blog?.id}
+          >
+            <StyledOtherBlog>
+              <Typography>{getTitle(title)}</Typography>
+            </StyledOtherBlog>
+          </Link>
+        ))
+      ) : (
+        <Box>No Blogs Found</Box>
+      )}
     </Box>
   );
 };
