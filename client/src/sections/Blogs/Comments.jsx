@@ -71,6 +71,8 @@ const Comments = ({ blogId }) => {
       {comments &&
         comments?.map((comment) => (
           <UIComment
+            key={comment.id}
+            id={comment.id}
             username={comment.username}
             commentText={comment.commentText}
             time={comment.createdAt}

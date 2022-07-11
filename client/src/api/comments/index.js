@@ -9,3 +9,8 @@ export const postCommentOnBlog = async (commentData) => {
   const response = await post('/comment/add', commentData);
   return response;
 };
+
+export const deleteComment = async (id) => {
+  const response = await del(`/comment/delete/${id}`);
+  return response;
+};

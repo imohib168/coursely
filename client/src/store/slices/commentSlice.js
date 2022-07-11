@@ -1,10 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCommentsByBlogId, postCommentOnBlog } from '../../api/comments';
+import {
+  getCommentsByBlogId,
+  postCommentOnBlog,
+  deleteComment,
+} from '../../api/comments';
 
 const initialState = {
   comments: null,
   isError: false,
+  commentError: false,
   isSuccess: false,
+  commentSuccess: false,
   isLoading: false,
   message: '',
 };
@@ -25,6 +31,17 @@ export const postComment = createAsyncThunk(
   async (commentData, thunkAPI) => {
     try {
       return await postCommentOnBlog(commentData);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const delComment = createAsyncThunk(
+  'comment/delete',
+  async (commentId, thunkAPI) => {
+    try {
+      return await deleteComment(commentId);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -78,6 +95,30 @@ const commentSlice = createSlice({
           comments: null,
           isLoading: false,
           isError: true,
+          message: action.payload.message,
+        };
+      })
+      // Delete comment
+      .addCase(delComment.pending, (state) => {
+        return { ...state, isLoading: true };
+      })
+      .addCase(delComment.fulfilled, (state, action) => {
+        console.log(state, action.payload);
+        return {
+          ...state,
+          isLoading: false,
+          commentSuccess: true,
+          comments: [
+            ...state.comments.filter((comment) => comment.id != action.payload),
+          ],
+        };
+      })
+      .addCase(delComment.rejected, (state, action) => {
+        return {
+          ...state,
+          comments: null,
+          isLoading: false,
+          commentError: true,
           message: action.payload.message,
         };
       });
