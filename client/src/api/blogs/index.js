@@ -26,3 +26,10 @@ export const getBlogCategories = async () => {
   const response = await get('blog/categories');
   return response;
 };
+
+export const getRelatedBlogs = async (category, blogId) => {
+  const response = await get(
+    `/blog/related-blogs?category=${category}&blogId=${blogId}`
+  );
+  return response;
+};
