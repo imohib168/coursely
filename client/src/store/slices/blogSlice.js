@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {
   getAllBlogs,
   createBlog,
-  // deleteBlog,
+  deleteBlog,
   getBlogCategories,
 } from '../../api/blogs';
 
@@ -10,6 +10,8 @@ const initialState = {
   blogs: null,
   isError: false,
   isSuccess: false,
+  delSuccess: false,
+  delError: false,
   isLoading: false,
   message: '',
 };
@@ -41,6 +43,17 @@ export const getCategories = createAsyncThunk(
   async (thunkAPI) => {
     try {
       return await getBlogCategories();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const delBlog = createAsyncThunk(
+  'blogs/delete',
+  async (blogId, thunkAPI) => {
+    try {
+      return await deleteBlog(blogId);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -94,6 +107,28 @@ const blogSlice = createSlice({
           blogs: null,
           isLoading: false,
           isError: true,
+          message: action.payload.message,
+        };
+      })
+      // Delete Blog
+      .addCase(delBlog.pending, (state) => {
+        return { ...state, isLoading: true };
+      })
+      .addCase(delBlog.fulfilled, (state, action) => {
+        console.log(action.payload);
+        return {
+          ...state,
+          blogs: [...state.blogs.filter((blog) => blog.id != action.payload)],
+          isLoading: false,
+          delSuccess: true,
+        };
+      })
+      .addCase(delBlog.rejected, (state, action) => {
+        return {
+          ...state,
+          blogs: null,
+          isLoading: false,
+          delError: true,
           message: action.payload.message,
         };
       });
