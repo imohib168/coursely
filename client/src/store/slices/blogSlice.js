@@ -4,7 +4,7 @@ import {
   createBlog,
   deleteBlog,
   getBlogCategories,
-} from '../../api/blogs';
+} from 'api/blogs';
 
 const initialState = {
   blogs: null,

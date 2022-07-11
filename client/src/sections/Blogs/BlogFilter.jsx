@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Search } from '@mui/icons-material';
 import { Box, Checkbox, Container, FormControlLabel } from '@mui/material';
-import { UIButton, UIChip, UIModal, UISimpleField } from '../../components';
-import { StyledMainBox, StyledSearchBox, StyledIconBox } from '../../styles';
+
+import { UIButton, UIChip, UIModal, UISimpleField } from 'components';
+import { StyledMainBox, StyledSearchBox, StyledIconBox } from 'styles';
 import { StyledCategory, StyledCategoryHeading } from './ui';
-import { getBlogs } from '../../store/slices/blogSlice';
+import { getBlogs } from 'store/slices/blogSlice';
 import CreateBlogModal from './CreateBlogModal';
-import { getBlogCategories } from '../../api/blogs';
+import { getBlogCategories } from 'api/blogs';
 
 const BlogFilter = () => {
   const dispatch = useDispatch();

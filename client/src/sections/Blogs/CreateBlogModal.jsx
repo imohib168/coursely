@@ -1,13 +1,14 @@
 import React from 'react';
 import * as yup from 'yup';
+import { Box } from '@mui/material';
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
-import { UIButton, UITextField } from '../../components';
-import { StyledErrorMessage } from '../../styles';
-import { postBlog } from '../../store/slices/blogSlice';
-import { toast } from 'react-toastify';
-import { Box } from '@mui/material';
+
+import { UIButton, UITextField } from 'components';
+import { StyledErrorMessage } from 'styles';
+import { postBlog } from 'store/slices/blogSlice';
 
 const schema = yup.object({
   title: yup.string().required('Title is required'),

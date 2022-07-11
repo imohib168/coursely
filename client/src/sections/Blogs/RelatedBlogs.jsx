@@ -1,7 +1,8 @@
-import { Box, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { getRelatedBlogs } from '../../api/blogs';
+
+import { getRelatedBlogs } from 'api/blogs';
 import { StyledOtherBlog } from './ui';
 
 const RelatedBlogs = ({ blog }) => {
@@ -20,13 +21,6 @@ const RelatedBlogs = ({ blog }) => {
     };
     relatedBlogs();
   }, [blog]);
-
-  console.log(relatedBlogs);
-
-  const title = `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Architecto porro voluptates dolores ducimus! Cumque iure quas, qui
-    amet dolores dolore repellendus porro reiciendis. Vel nostrum
-    consequatur corrupti. Atque, pariatur eaque.`;
 
   const getTitle = (_title) => {
     if (_title.length > 70) return `${_title.slice(0, 70)}...`;
@@ -47,7 +41,7 @@ const RelatedBlogs = ({ blog }) => {
             key={blog?.id}
           >
             <StyledOtherBlog>
-              <Typography>{getTitle(title)}</Typography>
+              <Typography>{getTitle(blog.title)}</Typography>
             </StyledOtherBlog>
           </Link>
         ))

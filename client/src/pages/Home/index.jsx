@@ -6,7 +6,7 @@ import {
   BlogsSection,
   InstructorSection,
   EducationSection,
-} from '../../sections';
+} from 'sections';
 
 const Home = () => {
   useEffect(() => {

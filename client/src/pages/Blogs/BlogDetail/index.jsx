@@ -2,13 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Box, Container, Grid } from '@mui/material';
-import {
-  BlogSection,
-  CommentsSection,
-  RelatedBlogsSection,
-} from '../../../sections';
-import { StyledDetailRightGrid } from '../ui';
-import { getBlogById } from '../../../api/blogs';
+import { BlogSection, CommentsSection, RelatedBlogsSection } from 'sections';
+import { StyledDetailRightGrid } from 'pages/Blogs/ui';
+import { getBlogById } from 'api/blogs';
 
 const BlogDetail = () => {
   const { id } = useParams();

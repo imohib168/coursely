@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyledMainBox } from '../../styles';
-import { UIBlogCard } from '../../components';
-import { getBlogs } from '../../store/slices/blogSlice';
+
+import { StyledMainBox } from 'styles';
+import { UIBlogCard } from 'components';
+import { getBlogs } from 'store/slices/blogSlice';
 
 const BlogPost = () => {
   const dispatch = useDispatch();

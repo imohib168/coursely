@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Grid, Typography } from '@mui/material';
-import ASSETS from '../../utils/assets';
-import { UIButton } from '../../components';
+
+import ASSETS from 'utils/assets';
+import { UIButton } from 'components';
+import { StyledMainBox } from 'styles';
 import { StyledHeading, StyledImageGrid } from './ui';
-import { StyledMainBox } from '../../styles';
 
 const Instructor = () => {
   const naviagte = useNavigate();

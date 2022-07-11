@@ -1,7 +1,6 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { appTheme } from '../theme';
-// import { ErrorPage } from '../pages';
+import { appTheme } from 'theme';
 import { ErrorLayoutWrapper, StyledBigHeading } from './ui';
 import { Outlet } from 'react-router-dom';
 

@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import ASSETS from '../../utils/assets';
-import { UIButton } from '../../components';
+import ASSETS from 'utils/assets';
+import { UIButton } from 'components';
 
 import { StyledErrorImgGrid, StyledErrorDetailGrid, buttonStyles } from './ui';
 

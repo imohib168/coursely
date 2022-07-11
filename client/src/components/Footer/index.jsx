@@ -11,7 +11,7 @@ import {
   StyledEmail,
   StyledCopyrightBox,
 } from './ui';
-import ASSETS from '../../utils/assets';
+import ASSETS from 'utils/assets';
 import { footerLinksMain, footerLinksBlogs } from './mockData';
 
 const Footer = () => {

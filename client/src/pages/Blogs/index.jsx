@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Container, Grid } from '@mui/material';
-import { BlogPostSection, BlogFilterSection } from '../../sections';
+import { BlogPostSection, BlogFilterSection } from 'sections';
 import { StyledRightGrid } from './ui';
 
 const Blogs = () => {

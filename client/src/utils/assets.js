@@ -1,13 +1,13 @@
-import ErrorSVG from '../assets/svg/error-404.svg';
-import RegisterSVG from '../assets/svg/register.svg';
-import LoginSVG from '../assets/svg/login.svg';
-import ExploreSVG from '../assets/svg/explore.svg';
-import InstructorSVG from '../assets/svg/instructor.svg';
-import StudentSVG from '../assets/svg/student.svg';
-import BlogSVG from '../assets/svg/blog.svg';
+import ErrorSVG from 'assets/svg/error-404.svg';
+import RegisterSVG from 'assets/svg/register.svg';
+import LoginSVG from 'assets/svg/login.svg';
+import ExploreSVG from 'assets/svg/explore.svg';
+import InstructorSVG from 'assets/svg/instructor.svg';
+import StudentSVG from 'assets/svg/student.svg';
+import BlogSVG from 'assets/svg/blog.svg';
 
-import Logo from '../assets/images/coursely.png';
-import Avatar from '../assets/images/avatar.png';
+import Logo from 'assets/images/coursely.png';
+import Avatar from 'assets/images/avatar.png';
 
 const ASSETS = {
   error: {

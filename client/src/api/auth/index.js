@@ -1,4 +1,4 @@
-import { post } from '../../utils/httpService';
+import { post } from 'utils/httpService';
 
 export const registerUser = async (userData) => {
   const response = await post('/user/register', userData);

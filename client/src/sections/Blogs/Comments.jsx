@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { UIButton, UIComment, UISimpleField } from '../../components';
+
+import { UIButton, UIComment, UISimpleField } from 'components';
 import { commentFieldStyles, StyledCommentSectionBox } from './ui';
-import { getComments, postComment } from '../../store/slices/commentSlice';
+import { getComments, postComment } from 'store/slices/commentSlice';
 
 const Comments = ({ blogId }) => {
   const dispatch = useDispatch();

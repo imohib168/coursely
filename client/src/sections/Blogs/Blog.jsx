@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyledMainBox } from '../../styles';
-import { UIBlogCard } from '../../components';
+import { StyledMainBox } from 'styles';
+import { UIBlogCard } from 'components';
 
 const BlogPost = ({ blog }) => {
   const _blog = blog[0];

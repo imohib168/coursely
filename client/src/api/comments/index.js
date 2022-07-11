@@ -1,4 +1,4 @@
-import { get, post, del } from '../../utils/httpService';
+import { get, post, del } from 'utils/httpService';
 
 export const getCommentsByBlogId = async (blogId) => {
   const response = await get(`comment/comments/${blogId}`);

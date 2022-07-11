@@ -1,6 +1,6 @@
+import React from 'react';
 import { Chip } from '@mui/material';
 import { styled } from '@mui/system';
-import React from 'react';
 
 const StyledChip = styled(Chip)(({ theme }) => ({
   borderRadius: '10px',

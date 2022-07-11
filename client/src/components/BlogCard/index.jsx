@@ -11,7 +11,7 @@ import {
   DeleteOutline,
 } from '@mui/icons-material';
 import { Avatar, Box, Checkbox, Grid, Typography } from '@mui/material';
-import ASSETS from '../../utils/assets';
+import ASSETS from 'utils/assets';
 import {
   StyledBlogCard,
   StyledBlogDetailText,
@@ -19,8 +19,8 @@ import {
   StyledLink,
   StyledBlogTitle,
 } from './ui';
-import UIChip from '../Chip';
-import { delBlog } from '../../store/slices/blogSlice';
+import { delBlog } from 'store/slices/blogSlice';
+import { UIChip } from 'components';
 
 const UIBlogCard = ({
   id,

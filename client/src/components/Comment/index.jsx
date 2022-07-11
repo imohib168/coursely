@@ -4,38 +4,10 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Box, Typography } from '@mui/material';
 import { DeleteOutline } from '@mui/icons-material';
-import { styled } from '@mui/system';
-import ASSETS from '../../utils/assets';
-import { delComment } from '../../store/slices/commentSlice';
 
-const StyledComment = styled(Box)(({ theme }) => ({
-  margin: '1.2rem 0rem',
-  display: 'flex',
-  alignItems: 'center',
-}));
-
-const StyledCommentBody = styled(Box)(({ theme }) => ({
-  marginLeft: '1rem',
-  width: '100%',
-
-  div: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-
-    p: {
-      '&:nth-of-type(1)': {
-        fontWeight: 600,
-        marginRight: '10px',
-      },
-
-      '&:nth-of-type(2)': {
-        color: theme.palette.secondary.main,
-        fontSize: '11px',
-      },
-    },
-  },
-}));
+import ASSETS from 'utils/assets';
+import { delComment } from 'store/slices/commentSlice';
+import { StyledComment, StyledCommentBody } from './ui';
 
 const UIComment = ({ id, username, commentText, time }) => {
   const dispatch = useDispatch();

@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { Box, Grid } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-toastify';
-import ASSET from '../../../utils/assets';
+import { useDispatch, useSelector } from 'react-redux';
+
+import ASSET from 'utils/assets';
+import { schema } from './schema';
+import { StyledErrorMessage } from 'styles';
+import { login, userReset } from 'store/slices/authSlice';
+import { UIButton, UIPasswordField, UITextField } from 'components';
 import {
   StyledImage,
   StyledImageGrid,
@@ -16,10 +21,6 @@ import {
   StyledForm,
   StyledButtonContainer,
 } from './ui';
-import { UIButton, UIPasswordField, UITextField } from '../../../components';
-import { StyledErrorMessage } from '../../../styles';
-import { schema } from './schema';
-import { login, userReset } from '../../../store/slices/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();

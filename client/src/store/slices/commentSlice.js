@@ -3,7 +3,7 @@ import {
   getCommentsByBlogId,
   postCommentOnBlog,
   deleteComment,
-} from '../../api/comments';
+} from 'api/comments';
 
 const initialState = {
   comments: null,

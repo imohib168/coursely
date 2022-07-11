@@ -1,7 +1,7 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import { appTheme } from '../theme';
+import { appTheme } from 'theme';
 import { AuthLayoutWrapper } from './ui';
 
 const BasicLayout = () => {

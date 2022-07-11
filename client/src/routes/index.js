@@ -1,12 +1,12 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import { BasicLayout, ErrorLayout, HomeLayout, AuthLayout } from '../layouts';
+import { BasicLayout, ErrorLayout, HomeLayout, AuthLayout } from 'layouts';
 
 // Routes
-import InstructorRoute from './instructorAuthRoute';
-import StudentRoute from './studentAuthRoute';
-import GeneralRoute from './generalRoute';
-import AuthRoute from './authRoute';
+import InstructorRoute from 'routes/instructorAuthRoute';
+import StudentRoute from 'routes/studentAuthRoute';
+import GeneralRoute from 'routes/generalRoute';
+import AuthRoute from 'routes/authRoute';
 
 // Pages
 import {
@@ -16,7 +16,7 @@ import {
   RegisterPage,
   BlogsPage,
   BlogDetail,
-} from '../pages';
+} from 'pages';
 
 const AppRoutes = () => {
   return (

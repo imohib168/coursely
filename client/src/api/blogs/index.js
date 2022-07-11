@@ -1,4 +1,4 @@
-import { get, post, del } from '../../utils/httpService';
+import { get, post, del } from 'utils/httpService';
 
 export const getAllBlogs = async (id, search, title, category) => {
   const response =

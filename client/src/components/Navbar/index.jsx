@@ -1,12 +1,13 @@
 import React from 'react';
+import { Search } from '@mui/icons-material';
 import { Container, Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 import { StyledNavbar, StyledNavbarLogo } from './ui';
-import { StyledSearchBox, StyledIconBox } from '../../styles';
-import { UIButton, UISimpleField } from '../../components';
-import { Search } from '@mui/icons-material';
-import { logout } from '../../store/slices/authSlice';
+import { StyledSearchBox, StyledIconBox } from 'styles';
+import { UIButton, UISimpleField } from 'components';
+import { logout } from 'store/slices/authSlice';
 
 const Navbar = () => {
   const navigate = useNavigate();

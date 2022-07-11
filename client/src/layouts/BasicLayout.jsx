@@ -1,8 +1,8 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import { AppFooter, AppNavbar } from '../components';
-import { appTheme } from '../theme';
+import { AppFooter, AppNavbar } from 'components';
+import { appTheme } from 'theme';
 import { BasicLayoutWrapper } from './ui';
 
 const BasicLayout = () => {

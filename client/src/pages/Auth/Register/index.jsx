@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react';
 import { Box, Grid } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm, Controller } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+
+import ASSET from 'utils/assets';
+import { register, userReset } from 'store/slices/authSlice';
+import { toast } from 'react-toastify';
+import { StyledErrorMessage } from 'styles';
+import { schema } from './schema';
+import { fieldsData, initialValues, roleOptions } from './mockData';
 import {
   StyledImage,
   StyledImageGrid,
@@ -18,14 +26,7 @@ import {
   UIPasswordField,
   UISelectField,
   UITextField,
-} from '../../../components';
-import { Link, useNavigate } from 'react-router-dom';
-import ASSET from '../../../utils/assets';
-import { schema } from './schema';
-import { fieldsData, initialValues, roleOptions } from './mockData';
-import { register, userReset } from '../../../store/slices/authSlice';
-import { toast } from 'react-toastify';
-import { StyledErrorMessage } from '../../../styles';
+} from 'components';
 
 const Register = () => {
   const navigate = useNavigate();
