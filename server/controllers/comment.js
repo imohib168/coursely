@@ -44,9 +44,9 @@ const deleteComment = asyncHandler(async (req, res) => {
   if (commentExist) {
     const deletedComment = await Comments.destroy({ where: { id: commentId } });
     if (deletedComment) {
-      res.status(200).json('Comment successfully deleted');
+      res.status(200).json(commentId);
     } else {
-      res.status(400).json({ message: 'Can not post comment' });
+      res.status(400).json({ message: 'Can not delete comment' });
       throw new Error('Can not post comment');
     }
   } else {

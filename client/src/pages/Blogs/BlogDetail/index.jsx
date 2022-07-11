@@ -15,6 +15,10 @@ const BlogDetail = () => {
   const [blog, setBlog] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getById = async () => {
       try {
         const getBlog = await getBlogById(id);

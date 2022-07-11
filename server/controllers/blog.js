@@ -95,7 +95,7 @@ const deleteBlog = asyncHandler(async (req, res) => {
   const deletedBlog = await Blogs.destroy({ where: { id: id } });
 
   if (deletedBlog) {
-    res.status(200).json('Post Successfully deleted.');
+    res.status(200).json(id);
   } else {
     res.status(400).json({ message: `Post with this ID: ${id} is not found` });
     throw new Error(`Post with this ID: ${id} is not found`);

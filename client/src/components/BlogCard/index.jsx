@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
-import { Favorite, FavoriteBorder, ForumOutlined } from '@mui/icons-material';
+import {
+  Favorite,
+  FavoriteBorder,
+  ForumOutlined,
+  DeleteOutline,
+} from '@mui/icons-material';
 import { Avatar, Box, Checkbox, Grid, Typography } from '@mui/material';
 import ASSETS from '../../utils/assets';
 import {
@@ -12,6 +20,7 @@ import {
   StyledBlogTitle,
 } from './ui';
 import UIChip from '../Chip';
+import { delBlog } from '../../store/slices/blogSlice';
 
 const UIBlogCard = ({
   id,
@@ -22,7 +31,24 @@ const UIBlogCard = ({
   isDetailPage,
   category,
 }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { delError, message, delSuccess } = useSelector((state) => state.blogs);
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  const handleDeleteBlog = () => {
+    dispatch(delBlog(id));
+    toast.success('Blog Successfully Deleted');
+
+    if (delSuccess) {
+      if (isDetailPage) navigate('/blogs');
+    }
+  };
+
+  useEffect(() => {
+    if (delError) toast.error(message);
+  }, [delError, message]);
 
   const getBlogText = (text) => {
     if (text.length > 400 && !isDetailPage)
@@ -53,11 +79,18 @@ const UIBlogCard = ({
             </StyledBlogDetailText>
           </Box>
 
-          <Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <UIChip
               label={category}
               sx={{ backgroundColor: '#eeeeee', color: '#424242' }}
             />
+            {user.username === username && (
+              <DeleteOutline
+                onClick={handleDeleteBlog}
+                sx={{ fontSize: '22px', cursor: 'pointer' }}
+                color='black'
+              />
+            )}
           </Box>
         </Grid>
 
