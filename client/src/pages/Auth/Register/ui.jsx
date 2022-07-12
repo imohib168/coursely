@@ -50,7 +50,7 @@ export const StyledForm = styled('form')(({ theme }) => ({
 
 export const StyledButtonContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'centered',
-})(({ theme, centered }) => ({
+})(({ centered }) => ({
   margin: '18px 0px',
   display: 'flex',
   justifyContent: !centered ? 'end' : 'center',

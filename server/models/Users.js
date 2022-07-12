@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     githubURL: { type: DataTypes.STRING },
     linkedinURL: { type: DataTypes.STRING },
     facebookURL: { type: DataTypes.STRING },
-    bio: { type: DataTypes.STRING },
+    city: { type: DataTypes.STRING },
+    country: { type: DataTypes.STRING },
+    bio: { type: DataTypes.TEXT },
   });
 
   Users.associate = (models) => {

@@ -11,3 +11,7 @@ export { default as BlogPostSection } from './Blogs/BlogPost';
 export { default as BlogSection } from './Blogs/Blog';
 export { default as RelatedBlogsSection } from './Blogs/RelatedBlogs';
 export { default as CommentsSection } from './Blogs/Comments';
+
+// Profile
+export { default as BasicProfileSection } from './Profile/BasicProfile';
+export { default as MoreInformationSection } from './Profile/MoreInformation';

@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 export const StyledMainBox = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'background',
@@ -35,4 +36,14 @@ export const StyledErrorMessage = styled(Typography)(() => ({
   marginBottom: '20px',
   fontSize: '13px',
   color: 'red',
+}));
+
+export const StyledEditLink = styled(Link)(() => ({
+  position: 'absolute',
+  top: '10px',
+  right: '10px',
+  textDecoration: 'none',
+  background: '#424242',
+  color: '#eeeeee',
+  padding: '4px 16px',
 }));
