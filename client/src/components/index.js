@@ -7,6 +7,7 @@ export { default as UIBlogCard } from './BlogCard';
 export { default as UIChip } from './Chip';
 export { default as UIComment } from './Comment';
 export { default as UIModal } from './Modal';
+export { default as UIDrawer } from './Drawer';
 
 // Text Fields
 export { default as UITextField } from './Fields/TextField';

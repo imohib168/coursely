@@ -1,6 +1,12 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import { BasicLayout, ErrorLayout, HomeLayout, AuthLayout } from 'layouts';
+import {
+  BasicLayout,
+  ErrorLayout,
+  HomeLayout,
+  AuthLayout,
+  InstructorLayout,
+} from 'layouts';
 
 // Routes
 import InstructorRoute from 'routes/instructorAuthRoute';
@@ -45,10 +51,10 @@ const AppRoutes = () => {
       </Route>
 
       {/* Instructor Routes */}
-      <Route element={<BasicLayout />}>
+      <Route element={<InstructorLayout />}>
         <Route element={<InstructorRoute />}>
           <Route path='ins' element={<Outlet />}>
-            <Route path='temp' element={<div>Instructor</div>} />
+            <Route path='dashboard' element={<div>Instructor</div>} />
           </Route>
         </Route>
       </Route>
