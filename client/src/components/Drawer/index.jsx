@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Toolbar, List, ListItem } from '@mui/material';
 import { drawerMenuItems } from './mock-data';
 import {
@@ -11,6 +11,7 @@ import {
 
 const UIDrawer = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   return (
     <StyledDrawer variant='permanent' anchor='left'>
@@ -20,7 +21,10 @@ const UIDrawer = () => {
       <List sx={{ marginTop: '25px' }}>
         {drawerMenuItems.map(({ id, label, Icon, link }) => (
           <ListItem key={id} sx={{ padding: 0 }}>
-            <StyledListItemButton onClick={() => navigate(`${link}`)}>
+            <StyledListItemButton
+              sx={{ backgroundColor: pathname === link && '#424242' }}
+              onClick={() => navigate(`${link}`)}
+            >
               <Icon />
               <StyledItem>{label}</StyledItem>
             </StyledListItemButton>

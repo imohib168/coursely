@@ -8,6 +8,7 @@ export { default as UIChip } from './Chip';
 export { default as UIComment } from './Comment';
 export { default as UIModal } from './Modal';
 export { default as UIDrawer } from './Drawer';
+export { default as UIHelpCard } from './HelpCard';
 
 // Text Fields
 export { default as UITextField } from './Fields/TextField';

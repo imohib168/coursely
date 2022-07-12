@@ -40,17 +40,7 @@ export const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
     fontSize: '26px',
   },
 
-  '&:hover': {
-    background: theme.palette.secondary.main,
-
-    svg: {
-      color: theme.palette.black.main,
-    },
-
-    p: {
-      color: theme.palette.black.main,
-    },
-  },
+  '&:hover': { background: theme.palette.primary.main },
 }));
 
 export const StyledItem = styled(Typography)(({ theme }) => ({
