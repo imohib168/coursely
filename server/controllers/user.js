@@ -100,30 +100,44 @@ const updateProfile = asyncHandler(async (req, res) => {
     linkedinURL,
     facebookURL,
     bio,
+    city,
+    country,
   } = req.body;
 
   const updatedProfile = await Users.update(
     {
+      bio,
+      city,
+      country,
       firstName,
       lastName,
       phone,
       githubURL,
       linkedinURL,
       facebookURL,
-      bio,
     },
     { where: { id: id } }
   );
 
   if (updatedProfile) {
     res.status(200).json({
+      id,
       firstName,
       lastName,
       phone,
       githubURL,
       linkedinURL,
       facebookURL,
+      city,
+      country,
       bio,
+      email: req.user.email,
+      username: req.user.username,
+      role: req.user.role,
+      roleId: req.user.roleId,
+      createdAt: req.user.createdAt,
+      updatedAt: req.user.updatedAt,
+      token: generateJWTToken(req.user.id),
     });
   } else {
     res.status(400).json({ message: 'Something went wrong' });
