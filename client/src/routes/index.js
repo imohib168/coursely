@@ -54,7 +54,10 @@ const AppRoutes = () => {
       <Route element={<InstructorLayout />}>
         <Route element={<InstructorRoute />}>
           <Route path='ins' element={<Outlet />}>
-            <Route path='dashboard' element={<div>Instructor</div>} />
+            <Route path='course/create' element={<div>Create Course</div>} />
+            <Route path='course/all' element={<div>Courses</div>} />
+            <Route path='course/stats' element={<div>Stats</div>} />
+            <Route path='course/help' element={<div>help</div>} />
           </Route>
         </Route>
       </Route>
