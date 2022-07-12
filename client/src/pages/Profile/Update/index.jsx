@@ -5,8 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Box, Container, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { UIButton, UITextField } from 'components';
-import { StyledErrorMessage, StyledMainBox } from 'styles';
-import { StyledHeading } from './ui';
+import { StyledErrorMessage, StyledMainBox, StyledHeading } from 'styles';
 import { update, updateReset } from 'store/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 

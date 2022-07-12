@@ -1,5 +1,6 @@
 import { styled } from '@mui/system';
 import { Divider, Drawer, Typography, ListItemButton } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -13,11 +14,12 @@ export const StyledDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-export const StyledLogo = styled(Typography)(({ theme }) => ({
+export const StyledLogo = styled(Link)(({ theme }) => ({
   color: theme.palette.white.main,
   fontSize: '30px',
   fontWeight: 600,
   letterSpacing: '1.5px',
+  textDecoration: 'none',
 }));
 
 export const StyledDivider = styled(Divider)({

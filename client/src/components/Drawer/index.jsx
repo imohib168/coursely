@@ -15,7 +15,7 @@ const UIDrawer = () => {
   return (
     <StyledDrawer variant='permanent' anchor='left'>
       <Toolbar>
-        <StyledLogo>Coursely</StyledLogo>
+        <StyledLogo to='/'>Coursely</StyledLogo>
       </Toolbar>
       <List sx={{ marginTop: '25px' }}>
         {drawerMenuItems.map(({ id, label, Icon, link }) => (

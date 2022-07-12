@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Grid } from '@mui/material';
 import { BasicProfileSection, MoreInformationSection } from 'sections';
-import { StyledHeading } from './Update/ui';
+import { StyledHeading } from 'styles';
 
 const Profile = () => {
   return (
