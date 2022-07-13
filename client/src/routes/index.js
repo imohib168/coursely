@@ -43,6 +43,7 @@ const AppRoutes = () => {
         </Route>
       </Route>
 
+      {/* General Routes */}
       <Route element={<BasicLayout />}>
         <Route element={<GeneralRoute />}>
           <Route path='blogs' element={<BlogsPage />} />
