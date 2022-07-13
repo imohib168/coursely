@@ -4,6 +4,8 @@ export const courseSchema = yup.object({
   title: yup.string().required('Title is required'),
   price: yup.number().required('Price is required'),
   slogan: yup.string().required('Slogan is required').min(40).max(70),
+  category: yup.string().required('Category is required'),
+  videoURL: yup.string().required('Video URL is required'),
 
   description: yup
     .string()

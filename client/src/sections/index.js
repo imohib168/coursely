@@ -15,3 +15,7 @@ export { default as CommentsSection } from './Blogs/Comments';
 // Profile
 export { default as BasicProfileSection } from './Profile/BasicProfile';
 export { default as MoreInformationSection } from './Profile/MoreInformation';
+
+// Courses
+export { default as CreateCourseSection } from './Course/CreateCourse';
+export { default as OfferedCoursesSection } from './Course/OfferedCourses';

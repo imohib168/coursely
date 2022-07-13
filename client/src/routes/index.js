@@ -26,6 +26,7 @@ import {
   ProfileUpdatePage,
   CreateCoursePage,
   HelpPage,
+  OfferedCoursesPage,
 } from 'pages';
 
 const AppRoutes = () => {
@@ -58,7 +59,7 @@ const AppRoutes = () => {
         <Route element={<InstructorRoute />}>
           <Route path='ins' element={<Outlet />}>
             <Route path='course/create' element={<CreateCoursePage />} />
-            <Route path='course/all' element={<div>Courses</div>} />
+            <Route path='course/all' element={<OfferedCoursesPage />} />
             <Route path='course/stats' element={<div>Stats</div>} />
             <Route path='course/help' element={<HelpPage />} />
           </Route>

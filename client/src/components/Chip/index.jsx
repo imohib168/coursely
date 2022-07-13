@@ -3,7 +3,7 @@ import { Chip } from '@mui/material';
 import { styled } from '@mui/system';
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  borderRadius: '10px',
+  borderRadius: '5px',
   backgroundColor: theme.palette.black.main,
   color: theme.palette.white.main,
   fontSize: '12px',

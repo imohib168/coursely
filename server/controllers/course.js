@@ -5,7 +5,7 @@ const { Course, Users } = require('../models');
 
 // Instructor
 const createCourse = asyncHandler(async (req, res) => {
-  const { id: userId, roleId, username } = req?.user;
+  const { id: userId, roleId, username } = req.user;
   const {
     title,
     slogan,
@@ -21,7 +21,9 @@ const createCourse = asyncHandler(async (req, res) => {
   const titleExist = await Course.findOne({ where: { title } });
 
   if (roleId == 2) {
-    res.status(400);
+    res
+      .status(400)
+      .json({ message: "You don't have access to create the course" });
     throw new Error("You don't have access to create the course");
   } else {
     if (titleExist) {
@@ -46,7 +48,9 @@ const createCourse = asyncHandler(async (req, res) => {
     if (newCourse) {
       res.status(200).json(newCourse);
     } else {
-      res.status(400);
+      res.status(400).json({
+        message: 'There is a problem while creating course. Please try again.',
+      });
       throw new Error(
         'There is a problem while creating course. Please try again.'
       );
@@ -61,7 +65,9 @@ const getCourseForInstructor = asyncHandler(async (req, res) => {
 
   if (userExist) {
     if (userExist.roleId === 1) {
-      const offeredCourses = await Course.findAll({ where: { id: userId } });
+      const offeredCourses = await Course.findAll({
+        where: { UserId: userId },
+      });
 
       if (offeredCourses) {
         res.status(200).json(offeredCourses);
