@@ -1,16 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const InstructorRoute = () => {
-  // Get User Role or RoleID
-  // const { role } = useSelector();
-
-  const role = 'INSTRUCTOR';
+  const { user } = useSelector((state) => state.auth);
   const AVAILABLE_ROLES = ['INSTRUCTOR'];
 
-  if (AVAILABLE_ROLES.includes(role)) return <Outlet />;
+  if (user && AVAILABLE_ROLES.includes(user.role)) return <Outlet />;
 
-  return <Navigate to='/' replace />;
+  return <Navigate to='/' />;
 };
 
 export default InstructorRoute;

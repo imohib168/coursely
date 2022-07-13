@@ -1,13 +1,32 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import { BasicLayout, ErrorLayout, HomeLayout } from '../layouts';
+import {
+  BasicLayout,
+  ErrorLayout,
+  HomeLayout,
+  AuthLayout,
+  InstructorLayout,
+} from 'layouts';
 
 // Routes
-import InstructorRoute from './instructorAuthRoute';
-import StudentRoute from './studentAuthRoute';
+import InstructorRoute from 'routes/instructorAuthRoute';
+import StudentRoute from 'routes/studentAuthRoute';
+import GeneralRoute from 'routes/generalRoute';
+import AuthRoute from 'routes/authRoute';
 
 // Pages
-import { HomePage } from '../pages';
+import {
+  ErrorPage,
+  HomePage,
+  LoginPage,
+  RegisterPage,
+  BlogsPage,
+  BlogDetailPage,
+  ProfilePage,
+  ProfileUpdatePage,
+  CreateCoursePage,
+  HelpPage,
+} from 'pages';
 
 const AppRoutes = () => {
   return (
@@ -17,11 +36,31 @@ const AppRoutes = () => {
         <Route path='/' element={<HomePage />} />
       </Route>
 
-      {/* Instructor Routes */}
+      <Route element={<AuthLayout />}>
+        <Route element={<AuthRoute />}>
+          <Route path='login' element={<LoginPage />} />
+          <Route path='register' element={<RegisterPage />} />
+        </Route>
+      </Route>
+
+      {/* General Routes */}
       <Route element={<BasicLayout />}>
+        <Route element={<GeneralRoute />}>
+          <Route path='blogs' element={<BlogsPage />} />
+          <Route path='blogs/:id' element={<BlogDetailPage />} />
+          <Route path='profile' element={<ProfilePage />} />
+          <Route path='profile/update' element={<ProfileUpdatePage />} />
+        </Route>
+      </Route>
+
+      {/* Instructor Routes */}
+      <Route element={<InstructorLayout />}>
         <Route element={<InstructorRoute />}>
           <Route path='ins' element={<Outlet />}>
-            <Route path='temp' element={<div>Instructor</div>} />
+            <Route path='course/create' element={<CreateCoursePage />} />
+            <Route path='course/all' element={<div>Courses</div>} />
+            <Route path='course/stats' element={<div>Stats</div>} />
+            <Route path='course/help' element={<HelpPage />} />
           </Route>
         </Route>
       </Route>
@@ -36,7 +75,9 @@ const AppRoutes = () => {
       </Route>
 
       {/* 404 Routes */}
-      <Route path='*' element={<ErrorLayout />} />
+      <Route element={<ErrorLayout />}>
+        <Route path='*' element={<ErrorPage />} />
+      </Route>
     </Routes>
   );
 };

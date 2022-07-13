@@ -9,33 +9,40 @@ const login = asyncHandler(async (req, res) => {
   const userExist = await Users.findOne({ where: { email: email } });
 
   if (!email && !password) {
-    res.status(400);
+    res.status(400).json({ message: 'Please provide all fields' });
     throw new Error('Please provide all fields');
   }
 
   if (!userExist) {
-    res.status(400);
+    res.status(400).json({ message: 'Account does not exist' });
     throw new Error('Account does not exist');
   }
 
   if (userExist && (await bcrypt.compare(password, userExist.password))) {
     res.json({
-      id: userExist.id,
-      username: userExist.username,
-      email: userExist.email,
+      ...userExist.dataValues,
       token: generateJWTToken(userExist.id),
     });
   } else {
-    res.status(400);
+    res.status(400).json({ message: 'Invalid credentials' });
     throw new Error('Invalid credentials');
   }
 });
 
 const register = asyncHandler(async (req, res) => {
-  const { email, username, password, role } = req.body;
+  const { firstName, lastName, username, email, phone, password, role } =
+    req.body;
 
-  if (!email || !username || !password || !role) {
-    res.status(400);
+  if (
+    !firstName ||
+    !lastName ||
+    !username ||
+    !email ||
+    !phone ||
+    !password ||
+    !role
+  ) {
+    res.status(400).json({ message: 'Please provide all fields' });
     throw new Error('Please provide all fields');
   }
 
@@ -43,12 +50,12 @@ const register = asyncHandler(async (req, res) => {
   const uniqueUsername = await Users.findOne({ where: { username: username } });
 
   if (userExist) {
-    res.status(400);
+    res.status(400).json({ message: 'User Already Exists' });
     throw new Error('User Already Exists');
   }
 
   if (uniqueUsername) {
-    res.status(400);
+    res.status(400).json({ message: 'Username should be unique' });
     throw new Error('Username should be unique');
   }
 
@@ -56,6 +63,9 @@ const register = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const newUser = await Users.create({
+    firstName,
+    lastName,
+    phone,
     email,
     username,
     password: hashedPassword,
@@ -63,10 +73,15 @@ const register = asyncHandler(async (req, res) => {
     roleId: role === 'INSTRUCTOR' ? '1' : '2',
   });
 
+  const createdUser = {
+    ...newUser.dataValues,
+    token: generateJWTToken(newUser.id),
+  };
+
   if (newUser) {
-    res.status(200).json({ ...newUser, token: generateJWTToken(newUser.id) });
+    res.status(200).json(createdUser);
   } else {
-    res.status(400);
+    res.status(400).json({ message: 'Invalid user data' });
     throw new Error('Invalid user data');
   }
 });
@@ -80,38 +95,52 @@ const updateProfile = asyncHandler(async (req, res) => {
     id,
     firstName,
     lastName,
-    phoneNumber,
+    phone,
     githubURL,
     linkedinURL,
     facebookURL,
     bio,
+    city,
+    country,
   } = req.body;
 
   const updatedProfile = await Users.update(
     {
+      bio,
+      city,
+      country,
       firstName,
       lastName,
-      phoneNumber,
+      phone,
       githubURL,
       linkedinURL,
       facebookURL,
-      bio,
     },
     { where: { id: id } }
   );
 
   if (updatedProfile) {
     res.status(200).json({
+      id,
       firstName,
       lastName,
-      phoneNumber,
+      phone,
       githubURL,
       linkedinURL,
       facebookURL,
+      city,
+      country,
       bio,
+      email: req.user.email,
+      username: req.user.username,
+      role: req.user.role,
+      roleId: req.user.roleId,
+      createdAt: req.user.createdAt,
+      updatedAt: req.user.updatedAt,
+      token: generateJWTToken(req.user.id),
     });
   } else {
-    res.status(400);
+    res.status(400).json({ message: 'Something went wrong' });
     throw new Error('Something went wrong');
   }
 });

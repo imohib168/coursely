@@ -8,7 +8,10 @@ export const appTheme = createTheme({
     black: { main: '#202020' },
   },
 
-  typography: { fontSize: 12 },
+  typography: {
+    fontSize: 12,
+    fontFamily: "'Poppins', 'sans-serif', 'Nunito Sans'",
+  },
 
   components: {
     MuiCssBaseline: {
