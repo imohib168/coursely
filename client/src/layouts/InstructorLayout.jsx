@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/system';
 import { appTheme } from 'theme';
 import { Box, CssBaseline, Toolbar } from '@mui/material';
 import { StyledAppBar } from './ui';
-import { UIDrawer } from 'components';
+import { UIDrawer, UIProfileAvatar } from 'components';
 import { Outlet } from 'react-router-dom';
 
 const InstructorLayout = () => {
@@ -13,7 +13,7 @@ const InstructorLayout = () => {
       <Box sx={{ display: 'flex' }}>
         <StyledAppBar position='fixed'>
           <Toolbar>
-            <Box sx={{ marginLeft: 'auto' }}>Profile Box</Box>
+            <UIProfileAvatar layout />
           </Toolbar>
         </StyledAppBar>
 

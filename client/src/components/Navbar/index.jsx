@@ -1,22 +1,18 @@
 import React from 'react';
 import { Search } from '@mui/icons-material';
 import { Container, Grid } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { StyledNavbar, StyledNavbarLogo } from './ui';
 import { StyledSearchBox, StyledIconBox } from 'styles';
-import { UIButton, UISimpleField } from 'components';
-import { logout } from 'store/slices/authSlice';
+import { UIButton, UISimpleField, UIProfileAvatar } from 'components';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const isBlogPage = pathname.includes('blogs');
   const { user } = useSelector((state) => state.auth);
-
-  const handleUserLogout = () => dispatch(logout());
 
   return (
     <StyledNavbar component='nav'>
@@ -69,26 +65,7 @@ const Navbar = () => {
           {/* Login & Register BUtton */}
           <Grid item xs={2}>
             {user ? (
-              <>
-                <UIButton
-                  variant='outlined'
-                  textColor='#424242'
-                  hoverTextColor='#424242'
-                  onClick={handleUserLogout}
-                  sx={{ marginRight: 2 }}
-                >
-                  Logout
-                </UIButton>
-                <UIButton
-                  variant='contained'
-                  bgColor='#424242'
-                  textColor='#eeeeee'
-                  hoverTextColor='#424242'
-                  onClick={() => navigate('/profile')}
-                >
-                  Profile
-                </UIButton>
-              </>
+              <UIProfileAvatar />
             ) : (
               <>
                 <UIButton
