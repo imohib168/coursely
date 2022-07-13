@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { Box, Typography } from '@mui/material';
+import { AppBar, Box, Typography } from '@mui/material';
 
 // Home Layout
 export const HomeLayoutWrapper = styled(Box)({});
@@ -31,4 +31,14 @@ export const StyledBigHeading = styled(Typography)(() => ({
   KhtmlUserSelect: 'none',
   MozUserSelect: 'none',
   msUserSelect: 'none',
+}));
+
+// Instructor Layout
+const drawerWidth = 240;
+
+export const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  backgroundColor: theme.palette.black.main,
+  width: `calc(100% - ${drawerWidth}px)`,
+  marginLeft: `${drawerWidth}px`,
+  boxShadow: 'none',
 }));

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Container, Grid, Typography } from '@mui/material';
 
@@ -9,6 +10,16 @@ import { StyledMainBox } from 'styles';
 
 const Banner = () => {
   const naviagte = useNavigate();
+
+  const { user } = useSelector((state) => state.auth);
+
+  const handleNavigate = () => {
+    if (user?.roleId === 2) {
+      naviagte('/courses');
+    } else {
+      naviagte('/register');
+    }
+  };
 
   return (
     <Container maxWidth='lg'>
@@ -21,16 +32,18 @@ const Banner = () => {
               atque quidem labore voluptas provident aut quasi sunt itaque
               consectetur.
             </Typography>
-            <UIButton
-              variant='contained'
-              bgColor='#424242'
-              textColor='#eeeeee'
-              hoverTextColor='#424242'
-              onClick={() => naviagte('/register')}
-              sx={{ width: '100px', marginTop: 3 }}
-            >
-              Join
-            </UIButton>
+            {user?.roleId !== 1 && (
+              <UIButton
+                variant='contained'
+                bgColor='#424242'
+                textColor='#eeeeee'
+                hoverTextColor='#424242'
+                onClick={handleNavigate}
+                sx={{ width: '100px', marginTop: 3 }}
+              >
+                {user?.roleId === 2 ? 'Courses' : 'Join'}
+              </UIButton>
+            )}
           </Grid>
           <StyledImageGrid item xs={12} md={5.5}>
             <img src={ASSETS.explore.img} alt={ASSETS.explore.alt} />

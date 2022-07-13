@@ -1,6 +1,12 @@
 import React from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
-import { BasicLayout, ErrorLayout, HomeLayout, AuthLayout } from 'layouts';
+import {
+  BasicLayout,
+  ErrorLayout,
+  HomeLayout,
+  AuthLayout,
+  InstructorLayout,
+} from 'layouts';
 
 // Routes
 import InstructorRoute from 'routes/instructorAuthRoute';
@@ -18,6 +24,8 @@ import {
   BlogDetailPage,
   ProfilePage,
   ProfileUpdatePage,
+  CreateCoursePage,
+  HelpPage,
 } from 'pages';
 
 const AppRoutes = () => {
@@ -35,6 +43,7 @@ const AppRoutes = () => {
         </Route>
       </Route>
 
+      {/* General Routes */}
       <Route element={<BasicLayout />}>
         <Route element={<GeneralRoute />}>
           <Route path='blogs' element={<BlogsPage />} />
@@ -45,10 +54,13 @@ const AppRoutes = () => {
       </Route>
 
       {/* Instructor Routes */}
-      <Route element={<BasicLayout />}>
+      <Route element={<InstructorLayout />}>
         <Route element={<InstructorRoute />}>
           <Route path='ins' element={<Outlet />}>
-            <Route path='temp' element={<div>Instructor</div>} />
+            <Route path='course/create' element={<CreateCoursePage />} />
+            <Route path='course/all' element={<div>Courses</div>} />
+            <Route path='course/stats' element={<div>Stats</div>} />
+            <Route path='course/help' element={<HelpPage />} />
           </Route>
         </Route>
       </Route>
