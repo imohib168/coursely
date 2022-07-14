@@ -28,5 +28,5 @@ export const StyledErrorDetailGrid = styled(Grid)(({ theme }) => ({
 export const buttonStyles = {
   width: '100px',
   display: 'block',
-  margin: '2.5rem 0px 0px 0px',
+  margin: '2rem 0px 0px 0px',
 };

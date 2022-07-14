@@ -26,6 +26,7 @@ const UIProfileAvatar = ({ layout }) => {
         cursor: 'pointer',
         userSelect: 'none',
         marginLeft: layout && 'auto',
+        zIndex: '9999',
       }}
     >
       <Avatar src={ASSETS.avatar.img} alt={ASSETS.avatar.alt} />

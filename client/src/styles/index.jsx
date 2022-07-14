@@ -49,11 +49,12 @@ export const StyledEditLink = styled(Link)(() => ({
 }));
 
 export const StyledHeading = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== 'mainHeading' && prop !== 'mb',
-})(({ theme, mainHeading, mb }) => ({
+  shouldForwardProp: (prop) =>
+    prop !== 'mainHeading' && prop !== 'mb' && prop !== 'color',
+})(({ theme, mainHeading, mb, color }) => ({
   fontSize: !mainHeading ? '20px' : '30px',
   fontWeight: 600,
   margin: '12px 0 24px 0',
   marginBottom: mb && mb,
-  color: theme.palette.primary.main,
+  color: !color ? theme.palette.primary.main : color,
 }));

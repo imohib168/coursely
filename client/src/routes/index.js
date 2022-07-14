@@ -27,6 +27,7 @@ import {
   CreateCoursePage,
   HelpPage,
   OfferedCoursesPage,
+  CourseDetailPage,
 } from 'pages';
 
 const AppRoutes = () => {
@@ -51,6 +52,7 @@ const AppRoutes = () => {
           <Route path='blogs/:id' element={<BlogDetailPage />} />
           <Route path='profile' element={<ProfilePage />} />
           <Route path='profile/update' element={<ProfileUpdatePage />} />
+          <Route path='course/detail/:id' element={<CourseDetailPage />} />
         </Route>
       </Route>
 

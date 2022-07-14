@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 const CreateCourse = ({ courseSchema, initialValues, courseCategories }) => {
   const dispatch = useDispatch();
   const { isError, message, isSuccess } = useSelector((state) => state.course);
-  console.log(isSuccess);
 
   const {
     control,
@@ -117,6 +116,34 @@ const CreateCourse = ({ courseSchema, initialValues, courseCategories }) => {
                 <UITextField label='Course Video' {...field} />
                 <StyledErrorMessage>
                   {errors.videoURL?.message}
+                </StyledErrorMessage>
+              </>
+            )}
+          />
+        </Grid>
+        <Grid item xs={12} md={5.9}>
+          <Controller
+            name='language'
+            control={control}
+            render={({ field }) => (
+              <>
+                <UITextField label='Course Language' {...field} />
+                <StyledErrorMessage>
+                  {errors.language?.message}
+                </StyledErrorMessage>
+              </>
+            )}
+          />
+        </Grid>
+        <Grid item xs={12} md={5.9}>
+          <Controller
+            name='duration'
+            control={control}
+            render={({ field }) => (
+              <>
+                <UITextField label='Course duration (in hours)' {...field} />
+                <StyledErrorMessage>
+                  {errors.duration?.message}
                 </StyledErrorMessage>
               </>
             )}

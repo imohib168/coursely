@@ -4,6 +4,8 @@ export const initialValues = {
   price: '',
   slogan: '',
   category: '',
+  duration: '',
+  language: '',
   // More Details
   description: '',
   outcome: '',

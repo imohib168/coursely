@@ -5,7 +5,7 @@ const { Course, Users } = require('../models');
 
 // Instructor
 const createCourse = asyncHandler(async (req, res) => {
-  const { id: userId, roleId, username } = req.user;
+  const { id: userId, roleId } = req.user;
   const {
     title,
     slogan,
@@ -16,6 +16,8 @@ const createCourse = asyncHandler(async (req, res) => {
     price,
     category,
     video,
+    language,
+    duration,
   } = req.body;
 
   const titleExist = await Course.findOne({ where: { title } });
@@ -41,7 +43,8 @@ const createCourse = asyncHandler(async (req, res) => {
       price,
       category,
       video,
-      username,
+      language,
+      duration,
       UserId: userId,
     });
 
@@ -116,15 +119,25 @@ const getAllCourses = asyncHandler(async (req, res) => {
 });
 
 const getCourseById = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  const { courseId } = req.params;
 
-  const course = await Course.findOne({ where: { id: id } });
+  const course = await Course.findOne({ where: { id: courseId } });
+  const instructor = await Users.findOne({ where: { id: course?.UserId } });
 
-  if (course) {
-    res.status(200).json([course]);
-  } else {
-    res.status(400).json({ message: `No Course available with ID (${id})` });
-    throw new Error(`No Course available with ID (${id})`);
+  if (instructor) {
+    if (course) {
+      res.status(200).json([
+        {
+          ...course.dataValues,
+          instructor: `${instructor?.firstName} ${instructor?.lastName}`,
+        },
+      ]);
+    } else {
+      res
+        .status(400)
+        .json({ message: `No Course available with ID (${courseId})` });
+      throw new Error(`No Course available with ID (${courseId})`);
+    }
   }
 });
 

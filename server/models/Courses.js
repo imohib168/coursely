@@ -1,30 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
   const Course = sequelize.define('Course', {
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
       unique: true,
     },
     slogan: {
-      type: DataTypes.STRING(300),
+      type: DataTypes.STRING(250),
       allowNull: false,
     },
     learning_outcome: {
-      type: DataTypes.STRING(2000),
+      type: DataTypes.TEXT,
       allowNull: false,
+      validate: { len: [300, 2000] },
     },
     pre_req: {
-      type: DataTypes.STRING(1000),
+      type: DataTypes.TEXT,
       allowNull: false,
+      validate: { len: [2, 300] },
     },
     description: {
-      type: DataTypes.STRING(4000),
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: { len: [500, 4000] },
     },
     features: {
-      type: DataTypes.STRING(2000),
+      type: DataTypes.TEXT,
       allowNull: false,
+      validate: { len: [200, 500] },
     },
     price: {
       type: DataTypes.INTEGER,
@@ -38,7 +41,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    username: {
+    duration: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    language: {
       type: DataTypes.STRING,
       allowNull: false,
     },

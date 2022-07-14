@@ -32,7 +32,7 @@ const UICourseCard = ({ id, title, slogan, category }) => {
             bgColor='#202020'
             textColor='#eeeeee'
             hoverTextColor='#202020'
-            onClick={() => navigate(`/course/${id}`)}
+            onClick={() => navigate(`/course/detail/${id}`)}
           >
             See Course
           </UIButton>

@@ -11,6 +11,7 @@ export { default as UIDrawer } from './Drawer';
 export { default as UIHelpCard } from './HelpCard';
 export { default as UIProfileAvatar } from './ProfileAvatar';
 export { default as UICourseCard } from './CourseCard';
+export { default as UIFeature } from './Feature';
 
 // Text Fields
 export { default as UITextField } from './Fields/TextField';

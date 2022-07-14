@@ -7,6 +7,7 @@ export { default as ProfileUpdatePage } from './Profile/Update';
 export { default as CreateCoursePage } from './CreateCourse';
 export { default as HelpPage } from './HelpCourse';
 export { default as OfferedCoursesPage } from './OfferedCourses';
+export { default as CourseDetailPage } from './CourseDetail';
 
 export { default as RegisterPage } from './Auth/Register';
 export { default as LoginPage } from './Auth/Login';

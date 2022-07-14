@@ -13,7 +13,7 @@ const {
 router.get('/courses', authProtect, getAllCourses);
 router.get('/courses/instructor', authProtect, getCourseForInstructor);
 router.post('/create', authProtect, createCourse);
-router.get('/detail/:id', authProtect, getCourseById);
+router.get('/detail/:courseId', authProtect, getCourseById);
 router.get('/related-courses', authProtect, getRelatedCourses);
 
 module.exports = router;
