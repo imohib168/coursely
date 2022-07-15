@@ -49,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    level: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 
   // Course.associate = (models) => {

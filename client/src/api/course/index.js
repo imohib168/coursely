@@ -14,3 +14,10 @@ export const courseById = async (courseId) => {
   const response = await get(`/course/detail/${courseId}`);
   return response;
 };
+
+export const allCourses = async (category, level, title) => {
+  const response = await get(
+    `/course/courses/?category=${category}&level=${level}&title=${title}`
+  );
+  return response;
+};

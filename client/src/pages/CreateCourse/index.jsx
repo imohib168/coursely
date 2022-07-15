@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
 import { StyledMainBox, StyledHeading } from 'styles';
-import { courseCategories, initialValues } from './mockData';
+import { courseCategories, initialValues, courseLevels } from './mockData';
 import { courseSchema } from './schema';
 import { CreateCourseSection } from 'sections';
 
@@ -17,6 +17,7 @@ const CreateCourse = () => {
           courseSchema={courseSchema}
           courseCategories={courseCategories}
           initialValues={initialValues}
+          courseLevels={courseLevels}
         />
       </Container>
     </StyledMainBox>

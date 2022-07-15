@@ -6,6 +6,7 @@ export const initialValues = {
   category: '',
   duration: '',
   language: '',
+  level: '',
   // More Details
   description: '',
   outcome: '',
@@ -21,4 +22,10 @@ export const courseCategories = [
   { value: 'DESIGNING', label: 'Designing' },
   { value: 'BUSINESS', label: 'Business' },
   { value: 'MARKETING', label: 'Marketing' },
+];
+
+export const courseLevels = [
+  { value: 'BEGINNER', label: 'Beginner' },
+  { value: 'INTERMEDIATE', label: 'Intermediate' },
+  { value: 'ADVANCED', label: 'Advanced' },
 ];

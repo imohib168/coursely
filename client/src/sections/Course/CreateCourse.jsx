@@ -8,7 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createNewCourse, resetCourse } from 'store/slices/courseSlice';
 import { toast } from 'react-toastify';
 
-const CreateCourse = ({ courseSchema, initialValues, courseCategories }) => {
+const CreateCourse = ({
+  courseSchema,
+  initialValues,
+  courseCategories,
+  courseLevels,
+}) => {
   const dispatch = useDispatch();
   const { isError, message, isSuccess } = useSelector((state) => state.course);
 
@@ -145,6 +150,22 @@ const CreateCourse = ({ courseSchema, initialValues, courseCategories }) => {
                 <StyledErrorMessage>
                   {errors.duration?.message}
                 </StyledErrorMessage>
+              </>
+            )}
+          />
+        </Grid>
+        <Grid item xs={12} md={5.9}>
+          <Controller
+            name='level'
+            control={control}
+            render={({ field }) => (
+              <>
+                <UISelectField
+                  {...field}
+                  label='Course Level'
+                  options={courseLevels}
+                />
+                <StyledErrorMessage>{errors.level?.message}</StyledErrorMessage>
               </>
             )}
           />

@@ -4,11 +4,18 @@ import { StyledHeading } from 'styles';
 import { UIButton, UIChip } from 'components';
 import { useNavigate } from 'react-router-dom';
 
-const UICourseCard = ({ id, title, slogan, category }) => {
+const UICourseCard = ({
+  id,
+  title,
+  slogan,
+  category,
+  price,
+  isCoursesPage,
+}) => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ background: '#fff', padding: '20px' }}>
+    <Box sx={{ background: '#fff', padding: '20px', mb: isCoursesPage && 2 }}>
       <Grid container justifyContent='space-between' alignItems='center'>
         <Grid item xs={12} md={2}>
           <lord-icon
@@ -20,10 +27,16 @@ const UICourseCard = ({ id, title, slogan, category }) => {
           />
         </Grid>
 
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={6}>
           <StyledHeading mb='8px'>{title}</StyledHeading>
           <Typography sx={{ mb: 1.5 }}>{slogan}</Typography>
-          <UIChip label={category} />
+          {isCoursesPage ? (
+            <Typography sx={{ mb: 1.5, fontSize: '18px', fontWeight: 700 }}>
+              <UIChip label={category} sx={{ mr: 1 }} /> Rs. {price}
+            </Typography>
+          ) : (
+            <UIChip label={category} />
+          )}
         </Grid>
 
         <Grid item xs={12} md={2}>

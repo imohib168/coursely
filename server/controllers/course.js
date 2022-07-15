@@ -18,6 +18,7 @@ const createCourse = asyncHandler(async (req, res) => {
     video,
     language,
     duration,
+    level,
   } = req.body;
 
   const titleExist = await Course.findOne({ where: { title } });
@@ -45,6 +46,7 @@ const createCourse = asyncHandler(async (req, res) => {
       video,
       language,
       duration,
+      level,
       UserId: userId,
     });
 
@@ -90,7 +92,13 @@ const getCourseForInstructor = asyncHandler(async (req, res) => {
 
 // Public APIs
 const getAllCourses = asyncHandler(async (req, res) => {
-  const { search: bySearch, category: byCategory, title: byTitle } = req?.query;
+  const {
+    search: bySearch,
+    category: byCategory,
+    title: byTitle,
+    level: byLevel,
+    language: byLanguage,
+  } = req?.query;
 
   let getCourses;
   const filters = {};
@@ -98,10 +106,12 @@ const getAllCourses = asyncHandler(async (req, res) => {
 
   if (bySearch) filters.title = { [Op.like]: `%${bySearch}%` };
   if (byCategory) filters.category = byCategory;
+  if (byLevel) filters.level = byLevel;
+  if (byLanguage) filters.language = byLanguage;
 
   if (byTitle) orders.push(['title', byTitle]);
 
-  if (!bySearch && !byCategory && !byTitle) {
+  if (!bySearch && !byCategory && !byTitle && !byLevel && !byLanguage) {
     getCourses = await Course.findAll();
   } else {
     getCourses = await Course.findAll({

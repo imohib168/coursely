@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { createCourse, instructorCourses,  } from 'api/course';
+import { createCourse, instructorCourses, allCourses } from 'api/course';
 
 const initialState = {
   courses: [],
@@ -25,6 +25,17 @@ export const getInstructorCourses = createAsyncThunk(
   async (instructorId, thunkAPI) => {
     try {
       return await instructorCourses(instructorId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getAllCourses = createAsyncThunk(
+  'courses/all',
+  async ({ category, level, title }, thunkAPI) => {
+    try {
+      return await allCourses(category, level, title);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -78,6 +89,27 @@ const courseSlice = createSlice({
         };
       })
       .addCase(getInstructorCourses.rejected, (state, action) => {
+        return {
+          ...state,
+          courses: null,
+          isLoading: false,
+          isError: true,
+          message: action.payload.message,
+        };
+      })
+      // Get All courses
+      .addCase(getAllCourses.pending, (state) => {
+        return { ...state, isLoading: true };
+      })
+      .addCase(getAllCourses.fulfilled, (state, action) => {
+        return {
+          ...state,
+          courses: action.payload,
+          isLoading: false,
+          isSuccess: true,
+        };
+      })
+      .addCase(getAllCourses.rejected, (state, action) => {
         return {
           ...state,
           courses: null,
