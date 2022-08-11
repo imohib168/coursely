@@ -29,6 +29,10 @@ app.use('/api/comment', commentRoute);
 const LikeRoute = require('./routes/like.js');
 app.use('/api/like', LikeRoute);
 
+// 5. Courses
+const CourseRoute = require('./routes/course.js');
+app.use('/api/course', CourseRoute);
+
 // Database connection
 const db = require('./models');
 const PORT = process.env.PORT || 5000;

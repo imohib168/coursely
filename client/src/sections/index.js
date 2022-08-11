@@ -15,3 +15,12 @@ export { default as CommentsSection } from './Blogs/Comments';
 // Profile
 export { default as BasicProfileSection } from './Profile/BasicProfile';
 export { default as MoreInformationSection } from './Profile/MoreInformation';
+
+// Courses
+export { default as CreateCourseSection } from './Course/CreateCourse';
+export { default as OfferedCoursesSection } from './Course/OfferedCourses';
+export { default as BasicDetailsSection } from './Course/BasicDetails';
+export { default as AboutCourseSection } from './Course/AboutCourse';
+export { default as FeaturesSection } from './Course/Features';
+export { default as CourseSection } from './Course/Courses';
+export { default as CourseFilterSection } from './Course/CourseFilter';

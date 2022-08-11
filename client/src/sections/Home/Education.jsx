@@ -32,7 +32,7 @@ const Education = () => {
               bgColor='#424242'
               textColor='#eeeeee'
               hoverTextColor='#424242'
-              onClick={() => naviagte('/coursess')}
+              onClick={() => naviagte('/courses')}
               sx={{ width: '100px', marginTop: 3 }}
             >
               Courses

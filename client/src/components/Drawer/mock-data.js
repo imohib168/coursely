@@ -1,7 +1,7 @@
 import {
   AddOutlined,
   LibraryBooksOutlined,
-  StackedBarChartOutlined,
+  // StackedBarChartOutlined,
   QuestionMarkOutlined,
 } from '@mui/icons-material';
 
@@ -18,12 +18,12 @@ export const drawerMenuItems = [
     Icon: LibraryBooksOutlined,
     link: '/ins/course/all',
   },
-  {
-    id: 3,
-    label: 'Course Stats',
-    Icon: StackedBarChartOutlined,
-    link: '/ins/course/stats',
-  },
+  // {
+  //   id: 3,
+  //   label: 'Course Stats',
+  //   Icon: StackedBarChartOutlined,
+  //   link: '/ins/course/stats',
+  // },
   {
     id: 4,
     label: 'Help',
