@@ -145,6 +145,20 @@ const updateProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const publicProfile = asyncHandler(async (req, res) => {
+  const { id: userId } = req.params;
+
+  const userExist = await Users.findOne({ where: { id: userId } });
+
+  if (userExist) {
+    const { password, ...userData } = userExist.dataValues;
+    res.status(200).json({ status: 'success', data: userData });
+  } else {
+    res.status(400).json({ status: 'error', message: 'User does not exist' });
+    throw new Error('Something went wrong');
+  }
+});
+
 const generateJWTToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: '30d',
@@ -155,4 +169,5 @@ module.exports = {
   register,
   profile,
   updateProfile,
+  publicProfile,
 };
