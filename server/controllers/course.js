@@ -1,7 +1,7 @@
 // const db = require('../models');
 const { Op } = require('sequelize');
 const asyncHandler = require('express-async-handler');
-const { Course, Users } = require('../models');
+const { Course, Users, Review } = require('../models');
 
 // Instructor
 const createCourse = asyncHandler(async (req, res) => {
@@ -90,6 +90,55 @@ const getCourseForInstructor = asyncHandler(async (req, res) => {
   }
 });
 
+const postReview = asyncHandler(async (req, res) => {
+  const { reviewText, courseId } = req.body;
+
+  if (!reviewText || !courseId) {
+    res
+      .status(400)
+      .json({ status: 'error', message: 'Please provide all fields' });
+    throw new Error('Please provide all fields');
+  }
+
+  const courseFound = await Course.findOne({ where: { id: courseId } });
+
+  if (courseFound) {
+    const newReview = await Review.create({
+      reviewText,
+      username: req.user.username,
+      CourseId: courseId,
+    });
+
+    res.status(200).json({ status: 'success', data: newReview });
+  } else {
+    res.status(400).json({
+      status: 'error',
+      message: 'Sorry! can not post review. Course not found',
+    });
+    throw new Error('Sorry! can not post review. Course not found');
+  }
+});
+
+const getReviewsByCourse = asyncHandler(async (req, res) => {
+  const { id: courseId } = req.params;
+
+  const courseFound = await Course.findOne({ where: { id: courseId } });
+
+  if (courseFound) {
+    const getReviews = await Review.findAll({
+      where: { CourseId: courseId },
+    });
+
+    res.status(200).json({ status: 'success', data: getReviews });
+  } else {
+    res.status(400).json({
+      status: 'error',
+      message: 'Course not found',
+    });
+    throw new Error('Course not found');
+  }
+});
+
 // Public APIs
 const getAllCourses = asyncHandler(async (req, res) => {
   const {
@@ -123,7 +172,7 @@ const getAllCourses = asyncHandler(async (req, res) => {
   if (getCourses) {
     res.status(200).json(getCourses);
   } else {
-    req.status(400);
+    res.status(400);
     throw new Error('Something went wrong');
   }
 });
@@ -182,9 +231,11 @@ const getRelatedCourses = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-  getAllCourses,
+  postReview,
   createCourse,
+  getAllCourses,
   getCourseById,
   getRelatedCourses,
+  getReviewsByCourse,
   getCourseForInstructor,
 };
