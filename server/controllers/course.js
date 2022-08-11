@@ -92,7 +92,6 @@ const getCourseForInstructor = asyncHandler(async (req, res) => {
 
 const postReview = asyncHandler(async (req, res) => {
   const { reviewText, courseId } = req.body;
-  const { id: userId, roleId } = req.user;
 
   if (!reviewText || !courseId) {
     res
