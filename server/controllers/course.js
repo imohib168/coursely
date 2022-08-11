@@ -180,7 +180,10 @@ const getAllCourses = asyncHandler(async (req, res) => {
 const getCourseById = asyncHandler(async (req, res) => {
   const { courseId } = req.params;
 
-  const course = await Course.findOne({ where: { id: courseId } });
+  const course = await Course.findOne({
+    include: [Review],
+    where: { id: courseId },
+  });
   const instructor = await Users.findOne({ where: { id: course?.UserId } });
 
   if (instructor) {
@@ -207,10 +210,9 @@ const getRelatedCourses = asyncHandler(async (req, res) => {
 
   if (courseExist) {
     const coursesByCategory = await Course.findAll({
+      include: [Review],
       where: { category: category },
     });
-
-    console.log(coursesByCategory);
 
     const filteredRelatedCourses = coursesByCategory.filter(
       (course) => course.id != courseId
