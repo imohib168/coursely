@@ -55,11 +55,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  // Course.associate = (models) => {
-  //   Course.hasMany(models.Enroll, {
-  //     onDelete: 'cascade',
-  //   });
-  // };
+  Course.associate = (models) => {
+    Course.hasMany(models.Review, {
+      onDelete: 'cascade',
+    });
+  };
 
   return Course;
 };

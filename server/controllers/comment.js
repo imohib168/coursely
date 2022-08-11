@@ -12,16 +12,16 @@ const getAllComments = asyncHandler(async (req, res) => {
 });
 
 const addComment = asyncHandler(async (req, res) => {
-  const { commentText, username, blogId } = req.body;
+  const { commentText, blogId } = req.body;
 
-  if (!username || !commentText || !blogId) {
+  if (!commentText || !blogId) {
     res.status(400).json({ message: 'Please provide all fields' });
     throw new Error('Please provide all fields');
   }
 
   const newComment = await Comments.create({
     commentText,
-    username,
+    username: req.user.username,
     BlogId: blogId,
   });
 
